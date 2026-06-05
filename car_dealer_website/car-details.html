@@ -1,58 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prime Auto Gallery | Vehicle Details</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
-<body>
-  <section class="sub-header details-header">
-    <nav>
-      <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
-      <div class="nav-links" id="navLinks">
-        <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
-        <ul><li><a href="index.html">HOME</a></li><li><a href="inventory.html">INVENTORY</a></li><li><a href="financing.html">FINANCING</a></li><li><a href="test-drive.html">TEST DRIVE</a></li><li><a href="about.html">ABOUT</a></li><li><a href="contact.html">CONTACT</a></li></ul>
-      </div>
-      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
-    </nav>
-    <h1>2022 BMW M4 Competition</h1>
-  </section>
+<section class="sub-header">
+  <nav>
+    <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
 
-  <section class="details">
-    <div class="row">
-      <div class="details-left">
-        <img class="main-car" src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=80" alt="BMW M4">
-      </div>
-      <div class="details-right">
-        <h2>2022 BMW M4 Competition</h2>
-        <h3>$76,900</h3>
-        <p>Performance coupe with premium interior, low mileage, and full inspection completed.</p>
-        <div class="spec-grid">
-          <span><strong>Body:</strong> Coupe</span>
-          <span><strong>Mileage:</strong> 18,000 km</span>
-          <span><strong>Engine:</strong> 3.0L Twin-Turbo</span>
-          <span><strong>Transmission:</strong> Automatic</span>
-          <span><strong>Color:</strong> Black</span>
-          <span><strong>Status:</strong> Stock</span>
-        </div>
-        <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
-        <a href="contact.html" class="hero-btn dark-btn">Contact Salesman</a>
-      </div>
+    <div class="nav-links" id="navLinks">
+      <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="inventory.html">INVENTORY</a></li>
+        <li><a href="financing.html">FINANCING</a></li>
+        <li><a href="test-drive.html">TEST DRIVE</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
     </div>
-  </section>
 
-  <section class="features">
-    <h1>Vehicle Features</h1>
-    <div class="row">
-      <div class="col"><h3>Performance</h3><p>Sport suspension, powerful engine, upgraded braking system.</p></div>
-      <div class="col"><h3>Comfort</h3><p>Leather seats, premium audio, heated seats, digital cockpit.</p></div>
-      <div class="col"><h3>Safety</h3><p>Backup camera, lane assist, blind spot monitoring, parking sensors.</p></div>
+    <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+  </nav>
+
+  <h1 id="detailTitle">Car Details</h1>
+</section>
+
+<section class="car-detail-section">
+  <div class="row">
+    <div class="car-detail-img">
+      <img id="detailImage" src="m4comp.png" alt="Car Image">
     </div>
-  </section>
 
-  <footer><section class="footer"><h4>Prime Auto Gallery</h4><p>Contact us to reserve this vehicle or schedule a visit.</p></section></footer>
-  <script src="script.js"></script>
-</body>
-</html>
+    <div class="car-detail-info">
+      <h1 id="detailName">2022 BMW M4 Competition</h1>
+      <h3 id="detailPrice">$76,900</h3>
+
+      <p id="detailShort">Coupe · Automatic · 18,000 km</p>
+
+      <div class="spec-list">
+        <p><strong>Category:</strong> <span id="detailCategory"></span></p>
+        <p><strong>Transmission:</strong> <span id="detailTransmission"></span></p>
+        <p><strong>Drivetrain:</strong> <span id="detailDrivetrain"></span></p>
+        <p><strong>Mileage:</strong> <span id="detailMileage"></span></p>
+        <p><strong>Status:</strong> <span id="detailStatus"></span></p>
+        <p><strong>Color:</strong> <span id="detailColor"></span></p>
+        <p><strong>Description:</strong> <span id="detailDescription"></span></p>
+      </div>
+
+      <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
+      <a href="contact.html" class="hero-btn red-btn">Contact Salesman</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <section class="footer">
+    <h4>Prime Auto Gallery</h4>
+    <p>Explore our selected inventory and contact us for more details.</p>
+  </section>
+</footer>
+
+<script src="script.js"></script>
+<script src="car-data.js"></script>

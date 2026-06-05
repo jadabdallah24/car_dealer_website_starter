@@ -38,154 +38,201 @@
     </div>
   </section>
 
-  <section class="featured inventory-grid">
-    <div class="row">
-      <div class="car-card" id="coupe"><img src="m4comp.png"><div class="car-info"><h3>2022 BMW M4 Competition</h3><p>Coupe · Automatic · 18,000 km</p><h4>$76,900</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
-      <div class="car-card" id="suv"><img src="gle.png"><div class="car-info"><h3>2021 Mercedes-Benz GLE</h3><p>SUV · Automatic · 42,000 km</p><h4>$58,500</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
-      <div class="car-card" id="sedan"><img src="s4.png"><div class="car-info"><h3>2020 Audi S4 Premium</h3><p>Sedan · Automatic · 35,000 km · Tuned</p><h4>$39,900</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+ <section class="featured inventory-grid">
+  <div class="row">
+    <div class="car-card" data-category="coupe">
+      <img src="m4comp.png" alt="2022 BMW M4 Competition">
+      <div class="car-info">
+        <h3>2022 BMW M4 Competition</h3>
+        <p>Coupe · Automatic · 18,000 km</p>
+        <h4>$76,900</h4>
+        <a href="car-details.html?car=m4-comp" class="hero-btn red-btn">View Details</a>
+      </div>
     </div>
-    <div class="row">
-      <div class="car-card" id="supercar"><img src="turbo s.png"><div class="car-info"><h3>2021 Porsche 911 Turbo S</h3><p>Supercar · PDK · 9,500 km</p><h4>$189,000</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
-      <div class="car-card" id="hatchback"><img src="hatchback.png"><div class="car-info"><h3>2019 Volkswagen Golf R</h3><p>Hatchback · Manual · 52,000 km</p><h4>$33,900</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
-      <div class="car-card"><img src="corvette2.png"><div class="car-info"><h3>2023 Chevrolet Corvette</h3><p>Coupe · Automatic · 6,000 km</p><h4>$92,500</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+
+    <div class="car-card" data-category="suv">
+      <img src="gle.png" alt="2021 Mercedes-Benz GLE">
+      <div class="car-info">
+        <h3>2021 Mercedes-Benz GLE</h3>
+        <p>SUV · Automatic · 42,000 km</p>
+        <h4>$58,500</h4>
+        <a href="car-details.html?car=gle" class="hero-btn red-btn">View Details</a>
+      </div>
     </div>
-  </section>
-  
+
+    <div class="car-card" data-category="sedan">
+      <img src="s4.png" alt="2020 Audi S4 Premium">
+      <div class="car-info">
+        <h3>2020 Audi S4 Premium</h3>
+        <p>Sedan · Automatic · 35,000 km · Tuned</p>
+        <h4>$39,900</h4>
+        <a href="car-details.html?car=audi-s4" class="hero-btn red-btn">View Details</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="car-card" data-category="supercar">
+      <img src="turbo s.png" alt="2021 Porsche 911 Turbo S">
+      <div class="car-info">
+        <h3>2021 Porsche 911 Turbo S</h3>
+        <p>Supercar · PDK · 9,500 km</p>
+        <h4>$189,000</h4>
+        <a href="car-details.html?car=turbo-s" class="hero-btn red-btn">View Details</a>
+      </div>
+    </div>
+
+    <div class="car-card" data-category="hatchback">
+      <img src="hatchback.png" alt="2019 Volkswagen Golf R">
+      <div class="car-info">
+        <h3>2019 Volkswagen Golf R</h3>
+        <p>Hatchback · Manual · 52,000 km</p>
+        <h4>$33,900</h4>
+        <a href="car-details.html?car=golf-r" class="hero-btn red-btn">View Details</a>
+      </div>
+    </div>
+
+    <div class="car-card" data-category="coupe">
+      <img src="corvette2.png" alt="2023 Chevrolet Corvette">
+      <div class="car-info">
+        <h3>2023 Chevrolet Corvette</h3>
+        <p>Coupe · Automatic · 6,000 km</p>
+        <h4>$92,500</h4>
+        <a href="car-details.html?car=corvette-2023" class="hero-btn red-btn">View Details</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="featured inventory-grid">
   <div class="row">
-
-    <div class="car-card" id="suv">
+    <div class="car-card" data-category="suv">
       <img src="suv.png" alt="Mercedes GLS 600 Maybach">
       <div class="car-info">
         <h3>Mercedes GLS 600 Maybach</h3>
         <p>SUV · Automatic · AWD · Luxury</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=gls600" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="supercar">
+    <div class="car-card" data-category="supercar">
       <img src="corvette.png" alt="Corvette ZR1">
       <div class="car-info">
         <h3>Corvette ZR1</h3>
         <p>Supercar · Automatic · RWD · In Stock</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=corvette-zr1" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="supercar">
+    <div class="car-card" data-category="supercar">
       <img src="super car.png" alt="McLaren 765LT Batman Spec">
       <div class="car-info">
         <h3>McLaren 765LT Batman Spec</h3>
         <p>Supercar · Automatic · RWD · Special Edition</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=mclaren-765lt" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
-
   </div>
 
   <div class="row">
-
-    <div class="car-card" id="supercar">
+    <div class="car-card" data-category="supercar">
       <img src="488.png" alt="Ferrari 488 Pista">
       <div class="car-info">
         <h3>Ferrari 488 Pista</h3>
         <p>Supercar · Automatic · RWD · In Stock</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=ferrari-488" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="supercar">
+    <div class="car-card" data-category="supercar">
       <img src="812.png" alt="Ferrari 812 Competizione">
       <div class="car-info">
         <h3>Ferrari 812 Competizione</h3>
         <p>Supercar · Automatic · RWD · Limited</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=ferrari-812" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="supercar">
+    <div class="car-card" data-category="supercar">
       <img src="revuelto.png" alt="Lamborghini Revuelto Matte Purple">
       <div class="car-info">
         <h3>Lamborghini Revuelto Matte Purple</h3>
         <p>Supercar · Automatic · AWD · Hybrid</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=revuelto" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
-
   </div>
 
   <div class="row">
-
-    <div class="car-card" id="coupe">
+    <div class="car-card" data-category="coupe">
       <img src="coupe.png" alt="BMW M4 Silver Surfer Spec">
       <div class="car-info">
         <h3>BMW M4 Silver Surfer Spec</h3>
         <p>Coupe · Automatic · AWD · Tuned</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=m4-silver" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="sedan">
+    <div class="car-card" data-category="sedan">
       <img src="sedan.png" alt="Audi RS7 ABT Legacy">
       <div class="car-info">
         <h3>Audi RS7 ABT Legacy</h3>
         <p>Sedan · Automatic · AWD · Tuned</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=rs7-abt" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="suv">
+    <div class="car-card" data-category="suv">
       <img src="svr.png" alt="Range Rover SVR">
       <div class="car-info">
         <h3>Range Rover SVR</h3>
         <p>SUV · Automatic · AWD · Performance</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=range-rover-svr" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
-
   </div>
 
   <div class="row">
-
-    <div class="car-card" id="hatchback">
+    <div class="car-card" data-category="hatchback">
       <img src="yaris.png" alt="GR Yaris Rally Spec">
       <div class="car-info">
         <h3>GR Yaris Rally Spec</h3>
         <p>Hatchback · Manual · AWD · Rally Build</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=gr-yaris" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="sedan">
-      <img src="civic.png" alt="Civic Type R Sedan White">
+    <div class="car-card" data-category="hatchback">
+      <img src="civic.png" alt="2017 Civic Type R Hatchback White">
       <div class="car-info">
-        <h3>Civic Type R Sedan White</h3>
-        <p>Sedan · Manual · FWD · Sport</p>
+        <h3>2017 Civic Type R Hatchback White</h3>
+        <p>Hatchback · Manual · FWD · Sport</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=civic-type-r" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
 
-    <div class="car-card" id="coupe">
+    <div class="car-card" data-category="coupe">
       <img src="86.png" alt="Toyota GT86 2015 Grey TRD">
       <div class="car-info">
         <h3>Toyota GT86 2015 Grey TRD</h3>
         <p>Coupe · Manual · RWD · TRD</p>
         <h4>Price Upon Request</h4>
-        <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        <a href="car-details.html?car=gt86-trd" class="hero-btn red-btn">View Details</a>
       </div>
     </div>
-
+  </div>
+</section>
   </div>
 </section>
   <footer><section class="footer"><h4>Prime Auto Gallery</h4><p>Explore our selected inventory and contact us for more details.</p></section></footer>
