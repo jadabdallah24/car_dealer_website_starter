@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Auto Gallery | Home</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <section class="header">
+    <nav>
+      <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="inventory.html">INVENTORY</a></li>
+          <li><a href="financing.html">FINANCING</a></li>
+          <li><a href="test-drive.html">TEST DRIVE</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <div class="text-box">
+      <h1>Find Your Dream Car Today</h1>
+      <p>Luxury, performance, and reliable vehicles selected for every lifestyle.</p>
+      <a href="inventory.html" class="hero-btn">View Inventory</a>
+      <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
+    </div>
+  </section>
+
+  <section class="categories">
+    <h1>Browse by Category</h1>
+    <p>Choose the body style that matches your lifestyle.</p>
+    <div class="row">
+      <a class="category-card" href="inventory.html#suv">
+        <img src="suv.png" alt="SUV">
+        <div class="layer"><h3>SUV</h3></div>
+      </a>
+      <a class="category-card" href="inventory.html#supercar">
+        <img src="super car.png" alt="Supercar">
+        <div class="layer"><h3>SUPERCAR</h3></div>
+      </a>
+      <a class="category-card" href="inventory.html#sedan">
+        <img src="sedan.png" alt="Sedan">
+        <div class="layer"><h3>SEDAN</h3></div>
+      </a>
+    </div>
+    <div class="row small-row">
+      <a class="category-card" href="inventory.html#coupe">
+        <img src="coupe.png" alt="Coupe">
+        <div class="layer"><h3>COUPE</h3></div>
+      </a>
+      <a class="category-card" href="inventory.html#hatchback">
+        <img src="hatchback.png" alt="Hatchback">
+        <div class="layer"><h3>HATCHBACK</h3></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h1>Featured Vehicles</h1>
+    <p>Popular cars currently available at our dealership.</p>
+    <div class="row">
+      <div class="car-card">
+        <img src="m4comp.png" alt="BMW M4">
+        <div class="car-info">
+          <h3>2022 BMW M4 Competition</h3>
+          <p>Coupe · Automatic · 18,000 km · Stock</p>
+          <h4>$76,900</h4>
+          <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        </div>
+      </div>
+      <div class="car-card">
+        <img src="gle.png" alt="Mercedes SUV">
+        <div class="car-info">
+          <h3>2021 Mercedes-Benz GLE</h3>
+          <p>SUV · Automatic · 42,000 km · Stock</p>
+          <h4>$58,500</h4>
+          <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        </div>
+      </div>
+      <div class="car-card">
+        <img src="s4.png" alt="Audi Sedan">
+        <div class="car-info">
+          <h3>2020 Audi S4 Premium</h3>
+          <p>Sedan · Automatic · 35,000 km · Tuned</p>
+          <h4>$39,900</h4>
+          <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-us">
+    <h1>Why Choose Us?</h1>
+    <div class="row">
+      <div class="col"><i class="fa-solid fa-car-side"></i><h3>Inspected Vehicles</h3><p>Each vehicle is carefully checked before being listed.</p></div>
+      <div class="col"><i class="fa-solid fa-handshake"></i><h3>Transparent Pricing</h3><p>No pressure, no hidden surprises, clear vehicle information.</p></div>
+      <div class="col"><i class="fa-solid fa-key"></i><h3>Easy Test Drives</h3><p>Book a test drive online and our team will contact you.</p></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h1>Ready to Drive Your Next Car?</h1>
+    <a href="contact.html" class="hero-btn">Contact Sales Team</a>
+  </section>
+
+  <footer>
+    <section class="footer">
+      <h4>Prime Auto Gallery</h4>
+      <p>Your trusted destination for luxury, sport, and everyday vehicles.</p>
+      <div class="icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin-in"></i>
+      </div>
+    </section>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

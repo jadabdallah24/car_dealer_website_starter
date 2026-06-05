@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Auto Gallery | Inventory</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <section class="sub-header inventory-header">
+    <nav>
+      <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="inventory.html">INVENTORY</a></li>
+          <li><a href="financing.html">FINANCING</a></li>
+          <li><a href="test-drive.html">TEST DRIVE</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Available Inventory</h1>
+  </section>
+
+  <section class="inventory-tools">
+    <h1>Find the Right Vehicle</h1>
+    <p>Filter examples can be made functional later using JavaScript.</p>
+    <div class="filter-box">
+      <input type="text" placeholder="Search by brand or model">
+      <select><option>Body Type</option><option>SUV</option><option>Supercar</option><option>Sedan</option><option>Coupe</option><option>Hatchback</option></select>
+      <select><option>Price Range</option><option>Under $30,000</option><option>$30,000 - $60,000</option><option>$60,000+</option></select>
+      <button class="hero-btn red-btn">Search</button>
+    </div>
+  </section>
+
+  <section class="featured inventory-grid">
+    <div class="row">
+      <div class="car-card" id="coupe"><img src="m4comp.png"><div class="car-info"><h3>2022 BMW M4 Competition</h3><p>Coupe · Automatic · 18,000 km</p><h4>$76,900</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+      <div class="car-card" id="suv"><img src="gle.png"><div class="car-info"><h3>2021 Mercedes-Benz GLE</h3><p>SUV · Automatic · 42,000 km</p><h4>$58,500</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+      <div class="car-card" id="sedan"><img src="s4.png"><div class="car-info"><h3>2020 Audi S4 Premium</h3><p>Sedan · Automatic · 35,000 km · Tuned</p><h4>$39,900</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+    </div>
+    <div class="row">
+      <div class="car-card" id="supercar"><img src="turbo s.png"><div class="car-info"><h3>2021 Porsche 911 Turbo S</h3><p>Supercar · PDK · 9,500 km</p><h4>$189,000</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+      <div class="car-card" id="hatchback"><img src="hatchback.png"><div class="car-info"><h3>2019 Volkswagen Golf R</h3><p>Hatchback · Manual · 52,000 km</p><h4>$33,900</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+      <div class="car-card"><img src="corvette2.png"><div class="car-info"><h3>2023 Chevrolet Corvette</h3><p>Coupe · Automatic · 6,000 km</p><h4>$92,500</h4><a href="car-details.html" class="hero-btn red-btn">View Details</a></div></div>
+    </div>
+  </section>
+
+  <footer><section class="footer"><h4>Prime Auto Gallery</h4><p>Explore our selected inventory and contact us for more details.</p></section></footer>
+  <script src="script.js"></script>
+</body>
+</html>
