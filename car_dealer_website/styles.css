@@ -427,3 +427,174 @@ p {
   .category-card { height: 220px; }
   .spec-grid { grid-template-columns: 1fr; }
 }
+/* ============================= */
+/* CAR DETAILS PAGE */
+/* ============================= */
+
+.car-detail-section {
+    width: 85%;
+    margin: auto;
+    padding: 80px 0;
+}
+
+.car-detail-section .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.car-detail-img {
+    flex-basis: 55%;
+}
+
+.car-detail-img img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.car-detail-info {
+    flex-basis: 42%;
+    background: #111;
+    color: #fff;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.car-detail-info h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.car-detail-info h3 {
+    font-size: 28px;
+    color: #f44336;
+    margin-bottom: 18px;
+}
+
+.car-detail-info p {
+    color: #ddd;
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 6px 0;
+}
+
+#detailShort {
+    font-size: 16px;
+    color: #bbb;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 18px;
+}
+
+.spec-list {
+    margin: 25px 0;
+}
+
+.spec-list p {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 12px 0;
+}
+
+.spec-list strong {
+    color: #fff;
+    min-width: 130px;
+}
+
+.spec-list span {
+    color: #ccc;
+    text-align: right;
+}
+
+.car-detail-info .hero-btn {
+    margin-top: 15px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.car-detail-info .red-btn {
+    background: #f44336;
+    color: #fff;
+    border: 1px solid #f44336;
+}
+
+.car-detail-info .red-btn:hover {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+/* Small feature badges under car title if you add them later */
+.detail-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.detail-badges span {
+    background: rgba(244, 67, 54, 0.15);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.4);
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .car-detail-section {
+        width: 90%;
+        padding: 50px 0;
+    }
+
+    .car-detail-section .row {
+        flex-direction: column;
+    }
+
+    .car-detail-img,
+    .car-detail-info {
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .car-detail-img img {
+        height: 330px;
+    }
+
+    .car-detail-info {
+        padding: 25px;
+    }
+
+    .car-detail-info h1 {
+        font-size: 26px;
+    }
+
+    .car-detail-info h3 {
+        font-size: 23px;
+    }
+
+    .spec-list p {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .spec-list span {
+        text-align: left;
+    }
+
+    .car-detail-info .hero-btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
