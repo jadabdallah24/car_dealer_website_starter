@@ -20,36 +20,89 @@
   <h1 id="detailTitle">Car Details</h1>
 </section>
 
-<section class="car-detail-section">
-  <div class="row">
-    <div class="car-detail-img">
-      <img id="detailImage" src="m4comp.png" alt="Car Image">
+<section class="vehicle-hero">
+  <img id="detailImage" src="" alt="Car Image">
+
+  <div class="vehicle-hero-overlay">
+    <p class="vehicle-label">Prime Auto Gallery Selection</p>
+    <h1 id="detailName">Car Name</h1>
+    <p id="detailShort">Car short description</p>
+  </div>
+</section>
+
+<section class="vehicle-main">
+  <div class="vehicle-summary">
+    <div>
+      <p class="small-title">Vehicle Price</p>
+      <h2 id="detailPrice">Price</h2>
     </div>
 
-    <div class="car-detail-info">
-      <h1 id="detailName">2022 BMW M4 Competition</h1>
-      <h3 id="detailPrice">$76,900</h3>
-      <div class="detail-badges">
-  <span>Premium Selection</span>
-  <span>Inspected Vehicle</span>
-  <span>Available Now</span>
-</div>
-
-      <p id="detailShort">Coupe · Automatic · 18,000 km</p>
-
-      <div class="spec-list">
-        <p><strong>Category:</strong> <span id="detailCategory"></span></p>
-        <p><strong>Transmission:</strong> <span id="detailTransmission"></span></p>
-        <p><strong>Drivetrain:</strong> <span id="detailDrivetrain"></span></p>
-        <p><strong>Mileage:</strong> <span id="detailMileage"></span></p>
-        <p><strong>Status:</strong> <span id="detailStatus"></span></p>
-        <p><strong>Color:</strong> <span id="detailColor"></span></p>
-        <p><strong>Description:</strong> <span id="detailDescription"></span></p>
-      </div>
-
+    <div class="vehicle-actions">
       <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
-      <a href="contact.html" class="hero-btn red-btn">Contact Salesman</a>
+      <a href="contact.html" class="hero-btn dark-btn">Contact Salesman</a>
     </div>
+  </div>
+
+  <div class="vehicle-layout">
+    <div class="vehicle-specs">
+      <h2>Vehicle Specifications</h2>
+
+      <div class="spec-grid">
+        <div class="spec-card">
+          <i class="fa-solid fa-car-side"></i>
+          <span>Category</span>
+          <strong id="detailCategory"></strong>
+        </div>
+
+        <div class="spec-card">
+          <i class="fa-solid fa-gears"></i>
+          <span>Transmission</span>
+          <strong id="detailTransmission"></strong>
+        </div>
+
+        <div class="spec-card">
+          <i class="fa-solid fa-road"></i>
+          <span>Drivetrain</span>
+          <strong id="detailDrivetrain"></strong>
+        </div>
+
+        <div class="spec-card">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>Mileage</span>
+          <strong id="detailMileage"></strong>
+        </div>
+
+        <div class="spec-card">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Status</span>
+          <strong id="detailStatus"></strong>
+        </div>
+
+        <div class="spec-card">
+          <i class="fa-solid fa-palette"></i>
+          <span>Color</span>
+          <strong id="detailColor"></strong>
+        </div>
+      </div>
+    </div>
+
+    <aside class="vehicle-contact-card">
+      <h3>Interested in this vehicle?</h3>
+      <p>Contact our sales team or schedule a private viewing/test drive.</p>
+
+      <a href="test-drive.html" class="hero-btn red-btn full-btn">Schedule Test Drive</a>
+      <a href="contact.html" class="hero-btn outline-btn full-btn">Ask About Vehicle</a>
+
+      <div class="dealer-note">
+        <p><strong>Prime Auto Gallery</strong></p>
+        <p>Luxury, performance, and collector vehicles.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="vehicle-description">
+    <h2>Overview</h2>
+    <p id="detailDescription"></p>
   </div>
 </section>
 
