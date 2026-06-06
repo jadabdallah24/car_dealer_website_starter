@@ -1,7 +1,6 @@
 class ApiCarsSearch {
   constructor() {
-    this.apiKey = "mBvT2QJBJmvFXzy2T0HMWyXYmIe2KiY9wg0TSKWN
-";
+    this.apiKey = "mBvT2QJBJmvFXzy2T0HMWyXYmIe2KiY9wg0TSKWN";
 
     this.makeInput = document.getElementById("apiMake");
     this.modelInput = document.getElementById("apiModel");
