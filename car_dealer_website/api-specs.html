@@ -1,15 +1,87 @@
-<section class="api-section">
-  <h1>Car Specs Lookup</h1>
-  <p>Search real vehicle data using API Ninjas.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <div class="api-search-box">
-    <input type="text" id="apiMake" placeholder="Make, example: BMW">
-    <input type="text" id="apiModel" placeholder="Model, example: M4">
-    <input type="number" id="apiYear" placeholder="Year, example: 2022">
-    <button class="hero-btn red-btn" id="apiSearchBtn">Search Specs</button>
-  </div>
+  <title>Prime Auto Gallery | API Specs</title>
 
-  <div id="apiLoading" class="api-message">Loading...</div>
-  <div id="apiError" class="api-message error-message"></div>
-  <div id="apiResults" class="api-results"></div>
-</section>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <section class="sub-header inventory-header">
+    <nav>
+      <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
+
+      <div class="nav-links" id="navLinks">
+        <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="inventory.html">INVENTORY</a></li>
+          <li><a href="api-specs.html">API SPECS</a></li>
+          <li><a href="financing.html">FINANCING</a></li>
+          <li><a href="test-drive.html">TEST DRIVE</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+
+      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+    </nav>
+
+    <h1>API Car Specifications</h1>
+  </section>
+
+  <section class="api-page">
+    <div class="api-intro">
+      <h1>Search Real Car Specs</h1>
+      <p>
+        This page uses the API Ninjas Cars API to fetch real vehicle information
+        such as fuel type, cylinders, transmission, drivetrain, MPG, and year.
+      </p>
+    </div>
+
+    <div class="api-search-card">
+      <div class="api-form-grid">
+        <input type="text" id="apiMake" placeholder="Make, example: BMW" />
+        <input type="text" id="apiModel" placeholder="Model, example: M4" />
+        <input type="number" id="apiYear" placeholder="Year, example: 2022" />
+        <button id="apiSearchBtn" class="hero-btn red-btn">Search API</button>
+      </div>
+
+      <p class="api-hint">
+        Try: BMW M4 2022, Audi S4 2020, Porsche 911 2021, Chevrolet Corvette 2023.
+      </p>
+    </div>
+
+    <div id="apiLoading" class="api-message hidden">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      Loading vehicle data...
+    </div>
+
+    <div id="apiError" class="api-message api-error hidden"></div>
+
+    <div id="apiEmpty" class="api-message api-empty hidden">
+      No results found. Try another make, model, or year.
+    </div>
+
+    <div id="apiResults" class="api-results"></div>
+  </section>
+
+  <button id="scrollTopBtn" title="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <footer>
+    <section class="footer">
+      <h4>Prime Auto Gallery</h4>
+      <p>Real inventory, API-powered specifications, and luxury vehicle research.</p>
+    </section>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="api-cars.js"></script>
+</body>
+</html>
