@@ -258,7 +258,14 @@ const selectedCar = params.get("car");
 const car = cars[selectedCar] || cars["m4-comp"];
 
 document.getElementById("detailTitle").textContent = car.name;
-document.getElementById("detailImage").src = car.image;
+const vehicleHero = document.getElementById("vehicleHero");
+
+if (vehicleHero) {
+  vehicleHero.style.backgroundImage = `
+    linear-gradient(rgba(4, 9, 30, 0.55), rgba(4, 9, 30, 0.65)),
+    url("${car.image}")
+  `;
+}
 document.getElementById("detailImage").alt = car.name;
 document.getElementById("detailName").textContent = car.name;
 document.getElementById("detailPrice").textContent = car.price;
