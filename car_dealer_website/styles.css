@@ -428,6 +428,40 @@ p {
   .spec-grid { grid-template-columns: 1fr; }
 }
 
+/* Jad Abdallah custom UI requirement:
+   Scroll-to-top button appears after the user scrolls down.
+   It uses a fade/slide animation and returns smoothly to the top. */
+
+#scrollTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: #f44336;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: 0.35s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#scrollTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#scrollTopBtn:hover {
+    background: #111;
+}
+
 /* ============================= */
 /* IMPROVED VEHICLE DETAILS PAGE */
 /* ============================= */
