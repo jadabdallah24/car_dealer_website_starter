@@ -908,3 +908,66 @@ p {
         padding: 25px;
     }
 }
+
+/* ============================= */
+/* INVENTORY FILTER SYSTEM */
+/* ============================= */
+
+.advanced-filter-box {
+    display: grid;
+    grid-template-columns: 2fr 1.3fr 1fr 1fr auto auto;
+    gap: 14px;
+    align-items: center;
+}
+
+.advanced-filter-box input,
+.advanced-filter-box select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.advanced-filter-box input:focus,
+.advanced-filter-box select:focus {
+    border-color: #f44336;
+}
+
+.clear-btn {
+    border: 1px solid #111;
+    background: transparent;
+    color: #111;
+}
+
+.clear-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.filter-result-text {
+    margin-top: 18px;
+    color: #555;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Keep card animation smooth when filtering */
+.car-card {
+    transition: 0.3s ease;
+}
+
+/* Responsive filter */
+@media (max-width: 1000px) {
+    .advanced-filter-box {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .advanced-filter-box {
+        grid-template-columns: 1fr;
+    }
+}

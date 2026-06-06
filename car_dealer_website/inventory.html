@@ -32,15 +32,30 @@
   </section>
 
   <section class="inventory-tools">
-    <h1>Find the Right Vehicle</h1>
-    <p>Filter examples can be made functional later using JavaScript.</p>
-    <div class="filter-box">
-      <input type="text" placeholder="Search by brand or model">
-      <select><option>Body Type</option><option>SUV</option><option>Supercar</option><option>Sedan</option><option>Coupe</option><option>Hatchback</option></select>
-      <select><option>Price Range</option><option>Under $30,000</option><option>$30,000 - $60,000</option><option>$60,000+</option></select>
-      <button class="hero-btn red-btn">Search</button>
-    </div>
-  </section>
+  <h1>Find the Right Vehicle</h1>
+  <p>Search by name, filter by chassis type, or set your price range.</p>
+
+  <div class="filter-box advanced-filter-box">
+    <input type="text" id="carSearchInput" placeholder="Search by model or name, example: BMW M4">
+
+    <select id="bodyTypeFilter">
+      <option value="all">All Chassis Types</option>
+      <option value="suv">SUV</option>
+      <option value="supercar">Supercar</option>
+      <option value="sedan">Sedan</option>
+      <option value="coupe">Coupe</option>
+      <option value="hatchback">Hatchback</option>
+    </select>
+
+    <input type="number" id="minPriceInput" placeholder="Min price">
+    <input type="number" id="maxPriceInput" placeholder="Max price">
+
+    <button class="hero-btn red-btn" id="filterBtn">Search</button>
+    <button class="hero-btn clear-btn" id="clearFilterBtn">Reset</button>
+  </div>
+
+  <p id="filterResultText" class="filter-result-text"></p>
+</section>
 
  <section class="featured inventory-grid">
   <div class="row">
