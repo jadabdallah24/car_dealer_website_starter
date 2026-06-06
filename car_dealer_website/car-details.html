@@ -1,127 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Prime Auto Gallery | Car Details</title>
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<section class="sub-header">
-  <nav>
-    <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
 
-    <div class="nav-links" id="navLinks">
-      <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="inventory.html">INVENTORY</a></li>
-        <li><a href="financing.html">FINANCING</a></li>
-        <li><a href="test-drive.html">TEST DRIVE</a></li>
-        <li><a href="api-specs.html">API SPECS</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-    </div>
+<body>
 
-    <i class="fa-solid fa-bars" onclick="showMenu()"></i>
-  </nav>
+  <section class="sub-header">
+    <nav>
+      <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
 
-  <h1 id="detailTitle">Car Details</h1>
-</section>
+      <div class="nav-links" id="navLinks">
+        <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
 
-<section class="vehicle-hero">
-  <img id="detailImage" src="" alt="Car Image">
-
-  <div class="vehicle-hero-overlay">
-    <p class="vehicle-label">Prime Auto Gallery Selection</p>
-    <h1 id="detailName">Car Name</h1>
-    <p id="detailShort">Car short description</p>
-  </div>
-</section>
-
-<section class="vehicle-main">
-  <div class="vehicle-summary">
-    <div>
-      <p class="small-title">Vehicle Price</p>
-      <h2 id="detailPrice">Price</h2>
-    </div>
-
-    <div class="vehicle-actions">
-      <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
-      <a href="contact.html" class="hero-btn dark-btn">Contact Salesman</a>
-    </div>
-  </div>
-
-  <div class="vehicle-layout">
-    <div class="vehicle-specs">
-      <h2>Vehicle Specifications</h2>
-
-      <div class="spec-grid">
-        <div class="spec-card">
-          <i class="fa-solid fa-car-side"></i>
-          <span>Category</span>
-          <strong id="detailCategory"></strong>
-        </div>
-
-        <div class="spec-card">
-          <i class="fa-solid fa-gears"></i>
-          <span>Transmission</span>
-          <strong id="detailTransmission"></strong>
-        </div>
-
-        <div class="spec-card">
-          <i class="fa-solid fa-road"></i>
-          <span>Drivetrain</span>
-          <strong id="detailDrivetrain"></strong>
-        </div>
-
-        <div class="spec-card">
-          <i class="fa-solid fa-gauge-high"></i>
-          <span>Mileage</span>
-          <strong id="detailMileage"></strong>
-        </div>
-
-        <div class="spec-card">
-          <i class="fa-solid fa-circle-check"></i>
-          <span>Status</span>
-          <strong id="detailStatus"></strong>
-        </div>
-
-        <div class="spec-card">
-          <i class="fa-solid fa-palette"></i>
-          <span>Color</span>
-          <strong id="detailColor"></strong>
-        </div>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="inventory.html">INVENTORY</a></li>
+          <li><a href="financing.html">FINANCING</a></li>
+          <li><a href="test-drive.html">TEST DRIVE</a></li>
+          <li><a href="api-specs.html">API SPECS</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
       </div>
-    </div>
 
-    <aside class="vehicle-contact-card">
-      <h3>Interested in this vehicle?</h3>
-      <p>Contact our sales team or schedule a private viewing/test drive.</p>
+      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+    </nav>
 
-      <a href="test-drive.html" class="hero-btn red-btn full-btn">Schedule Test Drive</a>
-      <a href="contact.html" class="hero-btn outline-btn full-btn">Ask About Vehicle</a>
-
-      <div class="dealer-note">
-        <p><strong>Prime Auto Gallery</strong></p>
-        <p>Luxury, performance, and collector vehicles.</p>
-      </div>
-    </aside>
-  </div>
-
-  <div class="vehicle-description">
-    <h2>Overview</h2>
-    <p id="detailDescription"></p>
-  </div>
-</section>
-
-<footer>
-  <section class="footer">
-    <h4>Prime Auto Gallery</h4>
-    <p>Explore our selected inventory and contact us for more details.</p>
+    <h1>Vehicle Details</h1>
   </section>
-</footer>
 
-<script src="script.js"></script>
-<script src="car-data.js"></script>
+  <section class="details-clean-page">
+
+    <div class="details-container">
+
+      <!-- LEFT SIDE: CAR IMAGE -->
+      <div class="details-image-box">
+        <img id="detailImage" src="" alt="Vehicle Image">
+      </div>
+
+      <!-- RIGHT SIDE: CAR INFORMATION -->
+      <div class="details-info-box">
+        <p class="details-label">Prime Auto Gallery Selection</p>
+
+        <h1 id="detailName">Vehicle Name</h1>
+        <p id="detailShort" class="details-short">Vehicle short description</p>
+
+        <div class="details-price-box">
+          <span>Vehicle Price</span>
+          <h2 id="detailPrice">Price</h2>
+        </div>
+
+        <div class="details-spec-grid">
+
+          <div class="details-spec-card">
+            <i class="fa-solid fa-car-side"></i>
+            <div>
+              <span>Category</span>
+              <strong id="detailCategory">Category</strong>
+            </div>
+          </div>
+
+          <div class="details-spec-card">
+            <i class="fa-solid fa-gears"></i>
+            <div>
+              <span>Transmission</span>
+              <strong id="detailTransmission">Transmission</strong>
+            </div>
+          </div>
+
+          <div class="details-spec-card">
+            <i class="fa-solid fa-road"></i>
+            <div>
+              <span>Drivetrain</span>
+              <strong id="detailDrivetrain">Drivetrain</strong>
+            </div>
+          </div>
+
+          <div class="details-spec-card">
+            <i class="fa-solid fa-gauge-high"></i>
+            <div>
+              <span>Mileage</span>
+              <strong id="detailMileage">Mileage</strong>
+            </div>
+          </div>
+
+          <div class="details-spec-card">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <span>Status</span>
+              <strong id="detailStatus">Status</strong>
+            </div>
+          </div>
+
+          <div class="details-spec-card">
+            <i class="fa-solid fa-palette"></i>
+            <div>
+              <span>Color</span>
+              <strong id="detailColor">Color</strong>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="details-actions">
+          <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
+          <a href="contact.html" class="hero-btn outline-dark-btn">Contact Salesman</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="details-overview">
+      <h2>Overview</h2>
+      <p id="detailDescription">
+        Vehicle description will appear here.
+      </p>
+    </div>
+
+  </section>
+
+  <button id="scrollTopBtn" title="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <footer>
+    <section class="footer">
+      <h4>Prime Auto Gallery</h4>
+      <p>Explore our selected inventory and contact us for more details.</p>
+    </section>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="car-data.js"></script>
+</body>
+</html>
