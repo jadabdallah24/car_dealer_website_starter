@@ -22,15 +22,21 @@ class ApiCarsSearch {
     this.errorBox.classList.add("hidden");
     this.emptyBox.classList.add("hidden");
     this.resultsBox.innerHTML = "";
+    this.searchBtn.classList.add("btn-loading");
+    this.searchBtn.disabled = true;
   }
 
   hideLoading() {
     this.loadingBox.classList.add("hidden");
+    this.searchBtn.classList.remove("btn-loading");
+    this.searchBtn.disabled = false;
   }
 
   showError(message) {
     this.errorBox.textContent = message;
     this.errorBox.classList.remove("hidden");
+    this.searchBtn.classList.remove("btn-loading");
+    this.searchBtn.disabled = false;
   }
 
   showEmpty() {

@@ -34,3 +34,31 @@ class ScrollToTop {
 }
 
 new ScrollToTop("scrollTopBtn");
+// Button loading animation requirement:
+// This ES6 class adds a temporary spinner animation when buttons are clicked.
+class ButtonLoadingAnimation {
+  constructor(selector) {
+    this.buttons = document.querySelectorAll(selector);
+    this.addClickEvents();
+  }
+
+  addClickEvents() {
+    this.buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.startLoading(button);
+      });
+    });
+  }
+
+  startLoading(button) {
+    button.classList.add("btn-loading");
+
+    setTimeout(() => {
+      button.classList.remove("btn-loading");
+    }, 900);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  new ButtonLoadingAnimation(".hero-btn");
+});
