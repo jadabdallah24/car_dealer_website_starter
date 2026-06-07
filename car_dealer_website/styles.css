@@ -1146,32 +1146,37 @@ p {
     right: 18px;
 }
 
+/* Smaller image gallery thumbnails */
+
 .thumbnail-gallery {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .thumbnail-img {
-    width: 100%;
-    height: 95px;
+    width: 82px;
+    height: 62px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
-    opacity: 0.7;
-    border: 3px solid transparent;
-    transition: 0.3s;
+    opacity: 0.75;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
 }
 
 .thumbnail-img:hover {
     opacity: 1;
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .active-thumb {
     opacity: 1;
     border-color: #f44336;
+    box-shadow: 0 8px 20px rgba(244, 67, 54, 0.35);
 }
 
 /* Responsive gallery */
