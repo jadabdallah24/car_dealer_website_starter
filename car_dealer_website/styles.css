@@ -1146,37 +1146,37 @@ p {
     right: 18px;
 }
 
-/* Smaller image gallery thumbnails */
+/* Tiny image selector gallery under main car image */
 
 .thumbnail-gallery {
     display: flex;
-    gap: 10px;
-    margin-top: 14px;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .thumbnail-img {
-    width: 82px;
-    height: 62px;
+    width: 55px;
+    height: 42px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 6px;
     cursor: pointer;
-    opacity: 0.75;
+    opacity: 0.6;
     border: 2px solid transparent;
-    transition: 0.3s ease;
+    transition: 0.25s ease;
 }
 
 .thumbnail-img:hover {
     opacity: 1;
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 }
 
 .active-thumb {
     opacity: 1;
     border-color: #f44336;
-    box-shadow: 0 8px 20px rgba(244, 67, 54, 0.35);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.45);
 }
 
 /* Responsive gallery */
