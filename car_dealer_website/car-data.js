@@ -390,12 +390,19 @@ const cars = {
 // This script reads the selected car from the URL and fills the details page.
 // Example URL: car-details.html?car=m4-comp
 
+// =============================
+// CAR DETAILS + PAGINATED IMAGE GALLERY
+// =============================
+
 const params = new URLSearchParams(window.location.search);
 const selectedCar = params.get("car");
 
 const car = cars[selectedCar] || cars["m4-comp"];
 
 let currentImageIndex = 0;
+let thumbnailStartIndex = 0;
+const maxVisibleThumbnails = 4;
+
 const carImages = car.images || [car.image];
 
 const detailImage = document.getElementById("detailImage");
@@ -427,7 +434,8 @@ function showImage(index) {
     }
 
     detailImage.classList.remove("image-fading");
-    updateActiveThumbnail();
+
+    renderThumbnails();
   };
 
   newImage.onerror = () => {
@@ -436,7 +444,6 @@ function showImage(index) {
     }
 
     detailImage.classList.remove("image-fading");
-
     console.error("Could not load image:", newImage.src);
 
     if (currentImageIndex !== 0) {
@@ -445,39 +452,60 @@ function showImage(index) {
   };
 }
 
-function createThumbnails() {
+function renderThumbnails() {
   if (!thumbnailGallery) return;
 
   thumbnailGallery.innerHTML = "";
 
-  carImages.forEach((image, index) => {
+  const visibleImages = carImages.slice(
+    thumbnailStartIndex,
+    thumbnailStartIndex + maxVisibleThumbnails
+  );
+
+  visibleImages.forEach((image, localIndex) => {
+    const realIndex = thumbnailStartIndex + localIndex;
+
     const thumb = document.createElement("img");
     thumb.src = image;
-    thumb.alt = `${car.name} image ${index + 1}`;
+    thumb.alt = `${car.name} image ${realIndex + 1}`;
     thumb.classList.add("thumbnail-img");
 
-    if (index === 0) {
+    if (realIndex === currentImageIndex) {
       thumb.classList.add("active-thumb");
     }
 
     thumb.addEventListener("click", () => {
-      showImage(index);
+      showImage(realIndex);
     });
 
     thumbnailGallery.appendChild(thumb);
   });
-}
 
-function updateActiveThumbnail() {
-  const thumbnails = document.querySelectorAll(".thumbnail-img");
+  if (thumbnailStartIndex > 0) {
+    const prevDots = document.createElement("button");
+    prevDots.textContent = "...";
+    prevDots.classList.add("thumbnail-dots");
 
-  thumbnails.forEach((thumb, index) => {
-    if (index === currentImageIndex) {
-      thumb.classList.add("active-thumb");
-    } else {
-      thumb.classList.remove("active-thumb");
-    }
-  });
+    prevDots.addEventListener("click", () => {
+      thumbnailStartIndex = Math.max(0, thumbnailStartIndex - maxVisibleThumbnails);
+      renderThumbnails();
+    });
+
+    thumbnailGallery.insertBefore(prevDots, thumbnailGallery.firstChild);
+  }
+
+  if (thumbnailStartIndex + maxVisibleThumbnails < carImages.length) {
+    const nextDots = document.createElement("button");
+    nextDots.textContent = "...";
+    nextDots.classList.add("thumbnail-dots");
+
+    nextDots.addEventListener("click", () => {
+      thumbnailStartIndex += maxVisibleThumbnails;
+      renderThumbnails();
+    });
+
+    thumbnailGallery.appendChild(nextDots);
+  }
 }
 
 if (galleryPrev) {
@@ -486,6 +514,10 @@ if (galleryPrev) {
 
     if (newIndex < 0) {
       newIndex = carImages.length - 1;
+    }
+
+    if (newIndex < thumbnailStartIndex) {
+      thumbnailStartIndex = Math.max(0, thumbnailStartIndex - maxVisibleThumbnails);
     }
 
     showImage(newIndex);
@@ -498,6 +530,11 @@ if (galleryNext) {
 
     if (newIndex >= carImages.length) {
       newIndex = 0;
+      thumbnailStartIndex = 0;
+    }
+
+    if (newIndex >= thumbnailStartIndex + maxVisibleThumbnails) {
+      thumbnailStartIndex += maxVisibleThumbnails;
     }
 
     showImage(newIndex);
@@ -517,5 +554,5 @@ document.getElementById("detailColor").textContent = car.color;
 document.getElementById("detailDescription").textContent = car.description;
 
 // Start image gallery
-createThumbnails();
+renderThumbnails();
 showImage(0);
