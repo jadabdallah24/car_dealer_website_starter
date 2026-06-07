@@ -67,20 +67,29 @@ document.addEventListener("DOMContentLoaded", () => {
 // This ES6 class filters cars by name/model, chassis type, and min/max price.
 class InventoryFilter {
   constructor() {
-    this.searchInput = document.getElementById("carSearchInput");
-    this.bodyTypeFilter = document.getElementById("bodyTypeFilter");
-    this.minPriceInput = document.getElementById("minPriceInput");
-    this.maxPriceInput = document.getElementById("maxPriceInput");
-    this.filterBtn = document.getElementById("filterBtn");
-    this.clearBtn = document.getElementById("clearFilterBtn");
-    this.resultText = document.getElementById("filterResultText");
-    this.carCards = document.querySelectorAll(".car-card");
+  this.searchInput = document.getElementById("carSearchInput");
+  this.bodyTypeFilter = document.getElementById("bodyTypeFilter");
+  this.minPriceInput = document.getElementById("minPriceInput");
+  this.maxPriceInput = document.getElementById("maxPriceInput");
+  this.filterBtn = document.getElementById("filterBtn");
+  this.clearBtn = document.getElementById("clearFilterBtn");
+  this.resultText = document.getElementById("filterResultText");
+  this.carCards = document.querySelectorAll(".car-card");
 
-    if (!this.searchInput || !this.bodyTypeFilter || !this.filterBtn) return;
+  if (!this.searchInput || !this.bodyTypeFilter || !this.filterBtn) return;
 
-    this.addEvents();
-    this.updateResultText(this.carCards.length);
-  }
+  this.addEvents();
+  this.applyCategoryFromURL();
+  this.filterCars();
+}
+  applyCategoryFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get("category");
+
+    if (category) {
+      this.bodyTypeFilter.value = category.toLowerCase();
+    }
+}
 
   addEvents() {
     this.filterBtn.addEventListener("click", () => this.filterCars());

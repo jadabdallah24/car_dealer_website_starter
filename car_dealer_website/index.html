@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Prime Auto Gallery | Home</title>
+
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<button id="scrollTopBtn" title="Back to top">
-  <i class="fa-solid fa-arrow-up"></i>
-</button>
+
 <body>
+
+  <!-- HOME HERO SECTION -->
   <section class="header">
     <nav>
       <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
+
       <div class="nav-links" id="navLinks">
         <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
+
         <ul>
           <li><a href="index.html">HOME</a></li>
           <li><a href="inventory.html">INVENTORY</a></li>
@@ -26,112 +30,169 @@
           <li><a href="contact.html">CONTACT</a></li>
         </ul>
       </div>
+
       <i class="fa-solid fa-bars" onclick="showMenu()"></i>
     </nav>
 
     <div class="text-box">
       <h1>Find Your Dream Car Today</h1>
       <p>Luxury, performance, and reliable vehicles selected for every lifestyle.</p>
+
       <a href="inventory.html" class="hero-btn">View Inventory</a>
       <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
     </div>
   </section>
 
-  <section class="categories">
+  <!-- CATEGORY SECTION -->
+  <section class="campus">
     <h1>Browse by Category</h1>
-    <p>Choose the body style that matches your lifestyle.</p>
-   <a href="inventory.html?category=suv">
-  <div class="c-col">
-    <img src="suv.png" alt="SUV">
-    <div class="layer"><h3>SUV</h3></div>
-  </div>
-</a>
+    <p>Choose the type of vehicle you are looking for.</p>
 
-<a href="inventory.html?category=supercar">
-  <div class="c-col">
-    <img src="super car.png" alt="Supercar">
-    <div class="layer"><h3>SUPERCAR</h3></div>
-  </div>
-</a>
+    <div class="row">
 
-<a href="inventory.html?category=sedan">
-  <div class="c-col">
-    <img src="sedan.png" alt="Sedan">
-    <div class="layer"><h3>SEDAN</h3></div>
-  </div>
-</a>
+      <a href="inventory.html?category=suv" class="category-link">
+        <div class="c-col">
+          <img src="suv.png" alt="SUV">
+          <div class="layer">
+            <h3>SUV</h3>
+          </div>
+        </div>
+      </a>
 
-<a href="inventory.html?category=coupe">
-  <div class="c-col">
-    <img src="coupe.png" alt="Coupe">
-    <div class="layer"><h3>COUPE</h3></div>
-  </div>
-</a>
+      <a href="inventory.html?category=supercar" class="category-link">
+        <div class="c-col">
+          <img src="super car.png" alt="Supercar">
+          <div class="layer">
+            <h3>SUPERCAR</h3>
+          </div>
+        </div>
+      </a>
 
-<a href="inventory.html?category=hatchback">
-  <div class="c-col">
-    <img src="hatchback.png" alt="Hatchback">
-    <div class="layer"><h3>HATCHBACK</h3></div>
-  </div>
-</a>
+      <a href="inventory.html?category=sedan" class="category-link">
+        <div class="c-col">
+          <img src="sedan.png" alt="Sedan">
+          <div class="layer">
+            <h3>SEDAN</h3>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="row second-category-row">
+
+      <a href="inventory.html?category=coupe" class="category-link">
+        <div class="c-col">
+          <img src="coupe.png" alt="Coupe">
+          <div class="layer">
+            <h3>COUPE</h3>
+          </div>
+        </div>
+      </a>
+
+      <a href="inventory.html?category=hatchback" class="category-link">
+        <div class="c-col">
+          <img src="hatchback.png" alt="Hatchback">
+          <div class="layer">
+            <h3>HATCHBACK</h3>
+          </div>
+        </div>
+      </a>
+
+    </div>
   </section>
 
+  <!-- FEATURED SECTION -->
   <section class="featured">
     <h1>Featured Vehicles</h1>
-    <p>Popular cars currently available at our dealership.</p>
+    <p>Explore a few selected models from our luxury inventory.</p>
+
     <div class="row">
-      <div class="car-card">
-        <img src="m4comp.png" alt="BMW M4">
+
+      <div class="car-card" data-category="coupe" data-price="76900">
+        <img src="m4comp.png" alt="2022 BMW M4 Competition">
         <div class="car-info">
           <h3>2022 BMW M4 Competition</h3>
-          <p>Coupe · Automatic · 18,000 km · Stock</p>
+          <p>Coupe · Automatic · 18,000 km</p>
           <h4>$76,900</h4>
-          <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+          <a href="car-details.html?car=m4-comp" class="hero-btn red-btn">View Details</a>
         </div>
       </div>
-      <div class="car-card">
-        <img src="gle.png" alt="Mercedes SUV">
+
+      <div class="car-card" data-category="supercar" data-price="189000">
+        <img src="turbo s.png" alt="2021 Porsche 911 Turbo S">
+        <div class="car-info">
+          <h3>2021 Porsche 911 Turbo S</h3>
+          <p>Supercar · PDK · 9,500 km</p>
+          <h4>$189,000</h4>
+          <a href="car-details.html?car=turbo-s" class="hero-btn red-btn">View Details</a>
+        </div>
+      </div>
+
+      <div class="car-card" data-category="suv" data-price="58500">
+        <img src="gle.png" alt="2021 Mercedes-Benz GLE">
         <div class="car-info">
           <h3>2021 Mercedes-Benz GLE</h3>
-          <p>SUV · Automatic · 42,000 km · Stock</p>
+          <p>SUV · Automatic · 42,000 km</p>
           <h4>$58,500</h4>
-          <a href="car-details.html" class="hero-btn red-btn">View Details</a>
+          <a href="car-details.html?car=gle" class="hero-btn red-btn">View Details</a>
         </div>
       </div>
-      <div class="car-card">
-        <img src="s4.png" alt="Audi Sedan">
-        <div class="car-info">
-          <h3>2020 Audi S4 Premium</h3>
-          <p>Sedan · Automatic · 35,000 km · Tuned</p>
-          <h4>$39,900</h4>
-          <a href="car-details.html" class="hero-btn red-btn">View Details</a>
-        </div>
-      </div>
+
     </div>
   </section>
 
-  <section class="why-us">
-    <h1>Why Choose Us?</h1>
+  <!-- SERVICES SECTION -->
+  <section class="services">
+    <h1>Why Choose Prime Auto Gallery?</h1>
+    <p>We help customers find premium vehicles with confidence.</p>
+
     <div class="row">
-      <div class="col"><i class="fa-solid fa-car-side"></i><h3>Inspected Vehicles</h3><p>Each vehicle is carefully checked before being listed.</p></div>
-      <div class="col"><i class="fa-solid fa-handshake"></i><h3>Transparent Pricing</h3><p>No pressure, no hidden surprises, clear vehicle information.</p></div>
-      <div class="col"><i class="fa-solid fa-key"></i><h3>Easy Test Drives</h3><p>Book a test drive online and our team will contact you.</p></div>
+
+      <div class="service-col">
+        <i class="fa-solid fa-car"></i>
+        <h3>Curated Inventory</h3>
+        <p>Every vehicle is selected based on quality, performance, and style.</p>
+      </div>
+
+      <div class="service-col">
+        <i class="fa-solid fa-handshake"></i>
+        <h3>Sales Support</h3>
+        <p>Our team helps you compare vehicles and choose the right one.</p>
+      </div>
+
+      <div class="service-col">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <h3>Easy Test Drives</h3>
+        <p>Book a test drive online and experience the vehicle before deciding.</p>
+      </div>
+
     </div>
   </section>
 
+  <!-- CALL TO ACTION -->
   <section class="cta">
-    <h1>Ready to Drive Your Next Car?</h1>
-    <a href="contact.html" class="hero-btn">Contact Sales Team</a>
+    <h1>Ready to Find Your Next Vehicle?</h1>
+    <a href="contact.html" class="hero-btn red-btn">Contact Us</a>
   </section>
 
+  <!-- Jad Abdallah custom UI requirement:
+       Scroll-to-top button appears after scrolling and returns smoothly to the top. -->
+  <button id="scrollTopBtn" title="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- FOOTER -->
   <footer>
     <section class="footer">
       <h4>Prime Auto Gallery</h4>
-      <p>Your trusted destination for luxury, sport, and everyday vehicles.</p>
+      <p>Luxury, performance, and collector vehicles selected for every lifestyle.</p>
+
       <div class="icons">
-        <i class="fab fa-facebook-f"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-linkedin-in"></i>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+        <i class="fa-brands fa-linkedin"></i>
       </div>
     </section>
   </footer>
