@@ -38,12 +38,29 @@
 
   <section class="details-clean-page">
 
-    <div class="details-container">
+<div class="details-image-box">
 
-      <!-- LEFT SIDE: CAR IMAGE -->
-      <div class="details-image-box">
-        <img id="detailImage" src="" alt="Vehicle Image">
-      </div>
+  <div class="main-image-wrapper">
+    <button class="gallery-arrow gallery-prev" id="galleryPrev">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div class="image-loader hidden" id="imageLoader">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+    </div>
+
+    <img id="detailImage" src="" alt="Vehicle Image">
+
+    <button class="gallery-arrow gallery-next" id="galleryNext">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <div class="thumbnail-gallery" id="thumbnailGallery">
+    <!-- thumbnails inserted by JavaScript -->
+  </div>
+
+</div>
 
       <!-- RIGHT SIDE: CAR INFORMATION -->
       <div class="details-info-box">

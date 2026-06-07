@@ -1,7 +1,13 @@
 const cars = {
   "m4-comp": {
     name: "2022 BMW M4 Competition",
-    image: "m4comp.png",
+     images: [
+    "m4comp.png",
+    "m4comp.png",
+    "m4comp.png",
+    "m4comp.png",
+    "m4comp.png"
+  ],
     price: "$76,900",
     short: "Coupe · Automatic · 18,000 km",
     category: "Coupe",
@@ -15,7 +21,13 @@ const cars = {
 
   "gle": {
     name: "2021 Mercedes-Benz GLE",
-    image: "gle.png",
+    images: [
+      "gle.png",
+      "gle.png",
+      "gle.png",
+      "gle.png",
+      "gle.png"
+    ],
     price: "$58,500",
     short: "SUV · Automatic · 42,000 km",
     category: "SUV",
@@ -29,7 +41,13 @@ const cars = {
 
   "audi-s4": {
     name: "2020 Audi S4 Premium",
-    image: "s4.png",
+    images: [
+      "s4.png",
+      "s4.png",
+      "s4.png",
+      "s4.png",
+      "s4.png"
+    ],
     price: "$39,900",
     short: "Sedan · Automatic · 35,000 km · Tuned",
     category: "Sedan",
@@ -43,7 +61,13 @@ const cars = {
 
   "turbo-s": {
     name: "2021 Porsche 911 Turbo S",
-    image: "turbo s.png",
+    images: [
+      "turbo s.png",
+      "turbo s.png",
+      "turbo s.png",
+      "turbo s.png",
+      "turbo s.png"
+    ],
     price: "$189,000",
     short: "Supercar · PDK · 9,500 km",
     category: "Supercar",
@@ -57,7 +81,13 @@ const cars = {
 
   "golf-r": {
     name: "2019 Volkswagen Golf R",
-    image: "hatchback.png",
+    images: [
+      "hatchback.png",
+      "hatchback.png",
+      "hatchback.png",
+      "hatchback.png",
+      "hatchback.png"
+    ],
     price: "$33,900",
     short: "Hatchback · Manual · 52,000 km",
     category: "Hatchback",
@@ -71,7 +101,13 @@ const cars = {
 
   "corvette-2023": {
     name: "2023 Chevrolet Corvette",
-    image: "corvette2.png",
+    images: [
+      "corvette2.png",
+      "corvette2.png",
+      "corvette2.png",
+      "corvette2.png",
+      "corvette2.png"
+    ],
     price: "$92,500",
     short: "Coupe · Automatic · 6,000 km",
     category: "Coupe",
@@ -85,7 +121,12 @@ const cars = {
 
   "gls600": {
     name: "Mercedes GLS 600 Maybach",
-    image: "suv.png",
+    images: ["suv.png",
+      "suv.png",
+      "suv.png",
+      "suv.png",
+      "suv.png"
+    ],
     price: "Price Upon Request",
     short: "SUV · Automatic · AWD · Luxury",
     category: "SUV",
@@ -99,7 +140,13 @@ const cars = {
 
   "corvette-zr1": {
     name: "Corvette ZR1",
-    image: "corvette.png",
+    images: [
+      "corvette.png",
+      "corvette.png",
+      "corvette.png",
+      "corvette.png",
+      "corvette.png"
+    ],
     price: "Price Upon Request",
     short: "Supercar · Automatic · RWD · In Stock",
     category: "Supercar",
@@ -113,7 +160,13 @@ const cars = {
 
   "mclaren-765lt": {
     name: "McLaren 765LT Batman Spec",
-    image: "super car.png",
+    images: [
+      "super car.png",
+      "super car.png",
+      "super car.png",
+      "super car.png",
+      "super car.png"
+    ],
     price: "Price Upon Request",
     short: "Supercar · Automatic · RWD · Special Edition",
     category: "Supercar",
@@ -127,7 +180,13 @@ const cars = {
 
   "ferrari-488": {
     name: "Ferrari 488 Pista",
-    image: "488.png",
+    images: [
+      "488.png",
+      "488.png",
+      "488.png",
+      "488.png",
+      "488.png"
+    ],
     price: "Price Upon Request",
     short: "Supercar · Automatic · RWD · In Stock",
     category: "Supercar",
@@ -141,7 +200,13 @@ const cars = {
 
   "ferrari-812": {
     name: "Ferrari 812 Competizione",
-    image: "812.png",
+    images: [
+      "812.png",
+      "812.png",
+      "812.png",
+      "812.png",
+      "812.png"
+    ],
     price: "Price Upon Request",
     short: "Supercar · Automatic · RWD · Limited",
     category: "Supercar",
@@ -155,7 +220,13 @@ const cars = {
 
   "revuelto": {
     name: "Lamborghini Revuelto Matte Purple",
-    image: "revuelto.png",
+    images: [
+      "revuelto.png",
+      "revuelto.png",
+      "revuelto.png",
+      "revuelto.png",
+      "revuelto.png"
+    ],
     price: "Price Upon Request",
     short: "Supercar · Automatic · AWD · Hybrid",
     category: "Supercar",
@@ -169,7 +240,13 @@ const cars = {
 
   "m4-silver": {
     name: "BMW M4 Silver Surfer Spec",
-    image: "coupe.png",
+    images: [
+      "coupe.png",
+      "coupe.png",
+      "coupe.png",
+      "coupe.png",
+      "coupe.png"
+    ],
     price: "Price Upon Request",
     short: "Coupe · Automatic · AWD · Tuned",
     category: "Coupe",
@@ -183,7 +260,13 @@ const cars = {
 
   "rs7-abt": {
     name: "Audi RS7 ABT Legacy",
-    image: "sedan.png",
+    images: [
+      "sedan.png",
+      "sedan.png",
+      "sedan.png",
+      "sedan.png",
+      "sedan.png"
+    ],
     price: "Price Upon Request",
     short: "Sedan · Automatic · AWD · Tuned",
     category: "Sedan",
@@ -197,7 +280,13 @@ const cars = {
 
   "range-rover-svr": {
     name: "Range Rover SVR",
-    image: "svr.png",
+    images: [
+      "svr.png",
+      "svr.png",
+      "svr.png",
+      "svr.png",
+      "svr.png"
+    ],
     price: "Price Upon Request",
     short: "SUV · Automatic · AWD · Performance",
     category: "SUV",
@@ -211,7 +300,13 @@ const cars = {
 
   "gr-yaris": {
     name: "GR Yaris Rally Spec",
-    image: "yaris.png",
+    images: [
+      "yaris.png",
+      "yaris.png",
+      "yaris.png",
+      "yaris.png",
+      "yaris.png"
+    ],
     price: "Price Upon Request",
     short: "Hatchback · Manual · AWD · Rally Build",
     category: "Hatchback",
@@ -225,7 +320,13 @@ const cars = {
 
   "civic-type-r": {
     name: "2017 Civic Type R Hatchback White",
-    image: "civic.png",
+    images: [
+      "civic.png",
+      "civic.png",
+      "civic.png",
+      "civic.png",
+      "civic.png"
+    ],
     price: "Price Upon Request",
     short: "Hatchback · Manual · FWD · Sport",
     category: "Hatchback",
@@ -239,7 +340,13 @@ const cars = {
 
   "gt86-trd": {
     name: "Toyota GT86 2015 Grey TRD",
-    image: "86.png",
+    images: [
+      "86.png",
+      "86.png",
+      "86.png",
+      "86.png",
+      "86.png"
+    ],
     price: "Price Upon Request",
     short: "Coupe · Manual · RWD · TRD",
     category: "Coupe",
@@ -257,7 +364,7 @@ const selectedCar = params.get("car");
 
 const car = cars[selectedCar] || cars["m4-comp"];
 
-document.getElementById("detailImage").src = car.image;
+document.getElementById("detailImage").src = car.images[0];
 document.getElementById("detailImage").alt = car.name;
 
 document.getElementById("detailName").textContent = car.name;
