@@ -1,32 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Prime Auto Gallery | Financing</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></head>
-<button id="scrollTopBtn" title="Back to top">
-  <i class="fa-solid fa-arrow-up"></i>
-</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Auto Gallery | Financing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-  <section class="sub-header">
-  <nav>
-    <a href="index.html" class="brand"><span>Prime</span> Auto Gallery</a>
 
-    <div class="nav-links" id="navLinks">
-      <i class="fa-solid fa-circle-xmark" onclick="hideMenu()"></i>
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="inventory.html">INVENTORY</a></li>
-        <li><a href="financing.html">FINANCING</a></li>
-        <li><a href="test-drive.html">TEST DRIVE</a></li>
-        <li><a href="api-specs.html">API SPECS</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-    </div>
+  <header class="sub-header" role="banner">
+    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+      <div class="container-fluid px-4">
+        <a href="index.html" class="navbar-brand brand"><span>Prime</span> Auto Gallery</a>
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="inventory.html">INVENTORY</a></li>
+            <li class="nav-item"><a class="nav-link active" href="financing.html">FINANCING</a></li>
+            <li class="nav-item"><a class="nav-link" href="test-drive.html">TEST DRIVE</a></li>
+            <li class="nav-item"><a class="nav-link" href="api-specs.html">CAR SPECS</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">ABOUT</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">CONTACT</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <h1>Financing</h1>
+  </header>
 
-    <i class="fa-solid fa-bars" onclick="showMenu()"></i>
-  </nav>
+  <section class="form-section" aria-label="Financing request form">
+    <h1>Get Financing Support</h1>
+    <p>Fill in the form below and our team will get back to you with flexible payment options.</p>
+    <form class="wide-form" id="financingForm" novalidate aria-label="Financing form">
+      <div class="form-group">
+        <label for="finName">Full Name <span class="req">*</span></label>
+        <input type="text" id="finName" placeholder="Full Name" required />
+        <span class="field-error" id="finNameError" role="alert"></span>
+      </div>
+      <div class="form-group">
+        <label for="finEmail">Email <span class="req">*</span></label>
+        <input type="email" id="finEmail" placeholder="Email" required />
+        <span class="field-error" id="finEmailError" role="alert"></span>
+      </div>
+      <div class="form-group">
+        <label for="finPhone">Phone Number <span class="req">*</span></label>
+        <input type="tel" id="finPhone" placeholder="Phone Number" required />
+        <span class="field-error" id="finPhoneError" role="alert"></span>
+      </div>
+      <div class="form-group">
+        <label for="finBudget">Budget / Desired Monthly Payment</label>
+        <input type="number" id="finBudget" placeholder="Budget / Desired Monthly Payment" />
+      </div>
+      <div class="form-group">
+        <label for="finDown">Down Payment</label>
+        <input type="number" id="finDown" placeholder="Down Payment" />
+      </div>
+      <div class="form-group">
+        <label for="finVehicle">Vehicle Interested In</label>
+        <input type="text" id="finVehicle" placeholder="Vehicle Interested In" />
+      </div>
+      <div class="form-group">
+        <label for="finMessage">Message</label>
+        <textarea id="finMessage" rows="6" placeholder="Message"></textarea>
+      </div>
+      <div id="finAlert" class="form-alert hidden" role="alert" aria-live="polite"></div>
+      <button class="hero-btn red-btn" type="submit">Send Request</button>
+    </form>
+  </section>
 
-  <h1>Financing</h1>
-</section>
-<section class="form-section"><h1>Get Financing Support</h1><p>This is a starter form. Later we can add a real payment calculator.</p><form class="wide-form"><input type="text" placeholder="Full Name" required><input type="email" placeholder="Email" required><input type="tel" placeholder="Phone Number" required><input type="number" placeholder="Budget / Desired Monthly Payment"><input type="number" placeholder="Down Payment"><input type="text" placeholder="Vehicle Interested In"><textarea rows="6" placeholder="Message"></textarea><button class="hero-btn red-btn" type="submit">Send Request</button></form></section>
-<footer><section class="footer"><h4>Prime Auto Gallery</h4><p>Flexible options to help you drive the vehicle you want.</p></section></footer><script src="script.js"></script>
-</body></html>
+  <button id="scrollTopBtn" title="Back to top" aria-label="Scroll back to top">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <footer class="site-footer" role="contentinfo">
+    <section class="footer">
+      <h4>Prime Auto Gallery</h4>
+      <p>Flexible options to help you drive the vehicle you want.</p>
+      <div class="icons">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Prime Auto Gallery. All rights reserved.</p>
+    </section>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

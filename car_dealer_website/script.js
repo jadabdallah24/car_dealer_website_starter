@@ -1,18 +1,12 @@
-var navLinks = document.getElementById("navLinks");
-
-function showMenu() {
-  navLinks.style.right = "0";
-}
-
-function hideMenu() {
-  navLinks.style.right = "-220px";
-}
+// ============================================================
+// Jad Abdallah – Custom UI Requirement:
+// ScrollToTop button that appears after scrolling 300px and
+// smoothly returns the user to the top of the page.
+// ============================================================
 class ScrollToTop {
   constructor(buttonId) {
     this.button = document.getElementById(buttonId);
-
     if (!this.button) return;
-
     window.addEventListener("scroll", () => this.toggleButton());
     this.button.addEventListener("click", () => this.scrollToTop());
   }
@@ -26,16 +20,16 @@ class ScrollToTop {
   }
 
   scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
 new ScrollToTop("scrollTopBtn");
-// Button loading animation requirement:
-// This ES6 class adds a temporary spinner animation when buttons are clicked.
+
+// ============================================================
+// Button loading animation
+// Adds a temporary spinner when any .hero-btn is clicked.
+// ============================================================
 class ButtonLoadingAnimation {
   constructor(selector) {
     this.buttons = document.querySelectorAll(selector);
@@ -44,15 +38,12 @@ class ButtonLoadingAnimation {
 
   addClickEvents() {
     this.buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        this.startLoading(button);
-      });
+      button.addEventListener("click", () => this.startLoading(button));
     });
   }
 
   startLoading(button) {
     button.classList.add("btn-loading");
-
     setTimeout(() => {
       button.classList.remove("btn-loading");
     }, 900);
@@ -63,126 +54,100 @@ document.addEventListener("DOMContentLoaded", () => {
   new ButtonLoadingAnimation(".hero-btn");
 });
 
-// Inventory filtering feature:
-// This ES6 class filters cars by name/model, chassis type, and min/max price.
+// ============================================================
+// Inventory filter
+// Filters car cards by name, chassis type, and price range.
+// ============================================================
 class InventoryFilter {
   constructor() {
-  this.searchInput = document.getElementById("carSearchInput");
-  this.bodyTypeFilter = document.getElementById("bodyTypeFilter");
-  this.minPriceInput = document.getElementById("minPriceInput");
-  this.maxPriceInput = document.getElementById("maxPriceInput");
-  this.filterBtn = document.getElementById("filterBtn");
-  this.clearBtn = document.getElementById("clearFilterBtn");
-  this.resultText = document.getElementById("filterResultText");
-  this.carCards = document.querySelectorAll(".car-card");
+    this.searchInput  = document.getElementById("carSearchInput");
+    this.bodyFilter   = document.getElementById("bodyTypeFilter");
+    this.minPrice     = document.getElementById("minPriceInput");
+    this.maxPrice     = document.getElementById("maxPriceInput");
+    this.filterBtn    = document.getElementById("filterBtn");
+    this.clearBtn     = document.getElementById("clearFilterBtn");
+    this.resultText   = document.getElementById("filterResultText");
+    this.carCards     = document.querySelectorAll(".car-card");
 
-  if (!this.searchInput || !this.bodyTypeFilter || !this.filterBtn) return;
+    if (!this.searchInput || !this.bodyFilter || !this.filterBtn) return;
 
-  this.addEvents();
-  this.applyCategoryFromURL();
-  this.filterCars();
-}
+    this.addEvents();
+    this.applyCategoryFromURL();
+    this.filterCars();
+  }
+
   applyCategoryFromURL() {
-    const params = new URLSearchParams(window.location.search);
+    const params   = new URLSearchParams(window.location.search);
     const category = params.get("category");
-
-    if (category) {
-      this.bodyTypeFilter.value = category.toLowerCase();
-    }
-}
+    if (category) this.bodyFilter.value = category.toLowerCase();
+  }
 
   addEvents() {
-    this.filterBtn.addEventListener("click", () => this.filterCars());
-
-    this.clearBtn.addEventListener("click", () => this.clearFilters());
-
+    this.filterBtn.addEventListener("click",  () => this.filterCars());
+    this.clearBtn.addEventListener("click",   () => this.clearFilters());
     this.searchInput.addEventListener("input", () => this.filterCars());
-    this.bodyTypeFilter.addEventListener("change", () => this.filterCars());
-    this.minPriceInput.addEventListener("input", () => this.filterCars());
-    this.maxPriceInput.addEventListener("input", () => this.filterCars());
+    this.bodyFilter.addEventListener("change", () => this.filterCars());
+    this.minPrice.addEventListener("input",   () => this.filterCars());
+    this.maxPrice.addEventListener("input",   () => this.filterCars());
   }
 
   getCarPrice(card) {
-    const priceText = card.querySelector("h4")?.textContent || "";
-
-    const cleanedPrice = priceText.replace(/[^0-9]/g, "");
-
-    if (!cleanedPrice) {
-      return null;
-    }
-
-    return Number(cleanedPrice);
+    const text    = card.querySelector("h4")?.textContent || "";
+    const cleaned = text.replace(/[^0-9]/g, "");
+    return cleaned ? Number(cleaned) : null;
   }
 
   getCarCategory(card) {
-    return (
-      card.dataset.category ||
-      card.id ||
-      ""
-    ).toLowerCase();
+    return (card.dataset.category || "").toLowerCase();
   }
 
   filterCars() {
-    const searchValue = this.searchInput.value.toLowerCase().trim();
-    const selectedBodyType = this.bodyTypeFilter.value.toLowerCase();
-    const minPrice = this.minPriceInput.value ? Number(this.minPriceInput.value) : null;
-    const maxPrice = this.maxPriceInput.value ? Number(this.maxPriceInput.value) : null;
+    const search   = this.searchInput.value.toLowerCase().trim();
+    const bodyType = this.bodyFilter.value.toLowerCase();
+    const min      = this.minPrice.value ? Number(this.minPrice.value) : null;
+    const max      = this.maxPrice.value ? Number(this.maxPrice.value) : null;
 
-    let visibleCount = 0;
+    let visible = 0;
 
     this.carCards.forEach((card) => {
-      const carName = card.querySelector("h3")?.textContent.toLowerCase() || "";
-      const carCategory = this.getCarCategory(card);
-      const carPrice = this.getCarPrice(card);
+      const name     = card.querySelector("h3")?.textContent.toLowerCase() || "";
+      const category = this.getCarCategory(card);
+      const price    = this.getCarPrice(card);
 
-      const matchesName = carName.includes(searchValue);
+      const matchName = name.includes(search);
+      const matchType = bodyType === "all" || category === bodyType;
 
-      const matchesBodyType =
-        selectedBodyType === "all" || carCategory === selectedBodyType;
-
-      let matchesPrice = true;
-
-      if (minPrice !== null || maxPrice !== null) {
-        if (carPrice === null) {
-          matchesPrice = false;
-        }
-
-        if (minPrice !== null && carPrice < minPrice) {
-          matchesPrice = false;
-        }
-
-        if (maxPrice !== null && carPrice > maxPrice) {
-          matchesPrice = false;
+      let matchPrice = true;
+      if (min !== null || max !== null) {
+        // Exclude "Price Upon Request" cards when a price range is applied
+        if (price === null) {
+          matchPrice = false;
+        } else {
+          if (min !== null && price < min) matchPrice = false;
+          if (max !== null && price > max) matchPrice = false;
         }
       }
 
-      if (matchesName && matchesBodyType && matchesPrice) {
-        card.style.display = "block";
-        visibleCount++;
-      } else {
-        card.style.display = "none";
-      }
+      const show = matchName && matchType && matchPrice;
+      // Reset to "" to honour the original flex/block value set by CSS
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
     });
 
-    this.updateResultText(visibleCount);
+    this.updateResultText(visible);
   }
 
   clearFilters() {
     this.searchInput.value = "";
-    this.bodyTypeFilter.value = "all";
-    this.minPriceInput.value = "";
-    this.maxPriceInput.value = "";
-
-    this.carCards.forEach((card) => {
-      card.style.display = "block";
-    });
-
+    this.bodyFilter.value  = "all";
+    this.minPrice.value    = "";
+    this.maxPrice.value    = "";
+    this.carCards.forEach((card) => (card.style.display = ""));
     this.updateResultText(this.carCards.length);
   }
 
   updateResultText(count) {
     if (!this.resultText) return;
-
     if (count === 0) {
       this.resultText.textContent = "No vehicles found. Try changing your filters.";
     } else if (count === 1) {
@@ -195,4 +160,162 @@ class InventoryFilter {
 
 document.addEventListener("DOMContentLoaded", () => {
   new InventoryFilter();
+});
+
+// ============================================================
+// Form validation
+// Generic ES6 class that validates required fields and shows
+// inline errors + a success/failure alert message.
+// Used on contact.html, financing.html, and test-drive.html.
+// ============================================================
+class FormValidator {
+  /**
+   * @param {string} formId       - The id of the <form> element
+   * @param {string} alertId      - The id of the alert <div>
+   * @param {Array}  fields       - Array of { inputId, errorId, validate }
+   */
+  constructor(formId, alertId, fields) {
+    this.form   = document.getElementById(formId);
+    this.alert  = document.getElementById(alertId);
+    this.fields = fields;
+
+    if (!this.form) return;
+
+    this.addRealtimeValidation();
+    this.form.addEventListener("submit", (e) => this.handleSubmit(e));
+  }
+
+  addRealtimeValidation() {
+    this.fields.forEach(({ inputId, errorId, validate }) => {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      input.addEventListener("input", () => {
+        const msg = validate(input.value.trim());
+        this.setFieldError(errorId, msg);
+        input.classList.toggle("input-error", !!msg);
+      });
+    });
+  }
+
+  setFieldError(errorId, message) {
+    const el = document.getElementById(errorId);
+    if (!el) return;
+    el.textContent = message || "";
+    el.style.display = message ? "block" : "none";
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let valid = true;
+
+    this.fields.forEach(({ inputId, errorId, validate }) => {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      const msg = validate(input.value.trim());
+      this.setFieldError(errorId, msg);
+      input.classList.toggle("input-error", !!msg);
+      if (msg) valid = false;
+    });
+
+    if (valid) {
+      this.showAlert("success", "Thank you! We will get back to you shortly.");
+      this.form.reset();
+      this.fields.forEach(({ inputId, errorId }) => {
+        const input = document.getElementById(inputId);
+        if (input) input.classList.remove("input-error");
+        this.setFieldError(errorId, "");
+      });
+    } else {
+      this.showAlert("error", "Please fix the errors above before submitting.");
+    }
+  }
+
+  showAlert(type, message) {
+    if (!this.alert) return;
+    this.alert.textContent = message;
+    this.alert.className   = `form-alert form-alert-${type}`;
+    this.alert.classList.remove("hidden");
+    this.alert.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    setTimeout(() => {
+      this.alert.classList.add("hidden");
+    }, 5000);
+  }
+}
+
+// ---- Contact form validators ----
+document.addEventListener("DOMContentLoaded", () => {
+  new FormValidator("contactForm", "formAlert", [
+    {
+      inputId: "contactName",
+      errorId: "nameError",
+      validate: (v) => v.length < 2 ? "Please enter your full name." : ""
+    },
+    {
+      inputId: "contactEmail",
+      errorId: "emailError",
+      validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : "Please enter a valid email address."
+    },
+    {
+      inputId: "contactMessage",
+      errorId: "messageError",
+      validate: (v) => v.length < 10 ? "Message must be at least 10 characters." : ""
+    }
+  ]);
+});
+
+// ---- Financing form validators ----
+document.addEventListener("DOMContentLoaded", () => {
+  new FormValidator("financingForm", "finAlert", [
+    {
+      inputId: "finName",
+      errorId: "finNameError",
+      validate: (v) => v.length < 2 ? "Please enter your full name." : ""
+    },
+    {
+      inputId: "finEmail",
+      errorId: "finEmailError",
+      validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : "Please enter a valid email address."
+    },
+    {
+      inputId: "finPhone",
+      errorId: "finPhoneError",
+      validate: (v) => v.length < 7 ? "Please enter a valid phone number." : ""
+    }
+  ]);
+});
+
+// ---- Test drive form validators ----
+document.addEventListener("DOMContentLoaded", () => {
+  new FormValidator("testDriveForm", "tdAlert", [
+    {
+      inputId: "tdName",
+      errorId: "tdNameError",
+      validate: (v) => v.length < 2 ? "Please enter your full name." : ""
+    },
+    {
+      inputId: "tdEmail",
+      errorId: "tdEmailError",
+      validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : "Please enter a valid email address."
+    },
+    {
+      inputId: "tdPhone",
+      errorId: "tdPhoneError",
+      validate: (v) => v.length < 7 ? "Please enter a valid phone number." : ""
+    },
+    {
+      inputId: "tdVehicle",
+      errorId: "tdVehicleError",
+      validate: (v) => v.length < 2 ? "Please enter the vehicle model." : ""
+    },
+    {
+      inputId: "tdDate",
+      errorId: "tdDateError",
+      validate: (v) => v ? "" : "Please select a date."
+    },
+    {
+      inputId: "tdTime",
+      errorId: "tdTimeError",
+      validate: (v) => v ? "" : "Please select a time."
+    }
+  ]);
 });
