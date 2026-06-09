@@ -34,86 +34,144 @@
     <h1>Vehicle Details</h1>
   </header>
 
-  <section class="details-clean-page" aria-label="Vehicle details">
+  <!-- BREADCRUMB -->
+  <div class="details-breadcrumb">
+    <a href="inventory.html"><i class="fa-solid fa-chevron-left"></i> Back to Inventory</a>
+  </div>
 
-    <div class="details-image-box">
-      <div class="main-image-wrapper">
-        <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous image">
-          <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-        </button>
-        <div class="image-loader hidden" id="imageLoader">
-          <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+  <!-- MAIN DETAILS LAYOUT -->
+  <section class="details-page" aria-label="Vehicle details">
+
+    <div class="details-layout">
+
+      <!-- ── LEFT: IMAGE PANEL ── -->
+      <div class="details-left-panel">
+
+        <div class="main-image-wrapper">
+          <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous image">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="image-loader hidden" id="imageLoader">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          </div>
+
+          <img id="detailImage" src="" alt="Vehicle" />
+
+          <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next image">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <!-- image counter badge -->
+          <div class="image-counter" id="imageCounter">1 / 5</div>
         </div>
-        <img id="detailImage" src="" alt="Vehicle Image">
-        <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next image">
-          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-        </button>
+
+        <!-- THUMBNAIL STRIP -->
+        <div class="thumbnail-strip" id="thumbnailGallery" role="list" aria-label="Vehicle image thumbnails"></div>
+
       </div>
-      <div class="thumbnail-gallery" id="thumbnailGallery" role="list" aria-label="Vehicle image thumbnails"></div>
+
+      <!-- ── RIGHT: INFO PANEL ── -->
+      <div class="details-right-panel">
+
+        <span class="details-eyebrow">Prime Auto Gallery Selection</span>
+        <h1 class="details-car-name" id="detailName">Vehicle Name</h1>
+        <p class="details-short-desc" id="detailShort">Short description</p>
+
+        <!-- PRICE -->
+        <div class="details-price-card">
+          <span class="details-price-label">Vehicle Price</span>
+          <p class="details-price-value" id="detailPrice">$0</p>
+        </div>
+
+        <!-- SPEC GRID -->
+        <div class="details-specs-grid">
+          <div class="spec-tile">
+            <i class="fa-solid fa-car-side"></i>
+            <div>
+              <span>Category</span>
+              <strong id="detailCategory">—</strong>
+            </div>
+          </div>
+          <div class="spec-tile">
+            <i class="fa-solid fa-gears"></i>
+            <div>
+              <span>Transmission</span>
+              <strong id="detailTransmission">—</strong>
+            </div>
+          </div>
+          <div class="spec-tile">
+            <i class="fa-solid fa-arrow-up-right-dots"></i>
+            <div>
+              <span>Drivetrain</span>
+              <strong id="detailDrivetrain">—</strong>
+            </div>
+          </div>
+          <div class="spec-tile">
+            <i class="fa-solid fa-gauge-high"></i>
+            <div>
+              <span>Mileage</span>
+              <strong id="detailMileage">—</strong>
+            </div>
+          </div>
+          <div class="spec-tile">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <span>Status</span>
+              <strong id="detailStatus">—</strong>
+            </div>
+          </div>
+          <div class="spec-tile">
+            <i class="fa-solid fa-palette"></i>
+            <div>
+              <span>Color</span>
+              <strong id="detailColor">—</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="details-actions">
+          <a href="test-drive.html" class="det-btn det-btn-primary">
+            <i class="fa-solid fa-key"></i> Book Test Drive
+          </a>
+          <a href="contact.html" class="det-btn det-btn-outline">
+            <i class="fa-solid fa-phone"></i> Contact Salesman
+          </a>
+        </div>
+
+      </div>
     </div>
 
-    <div class="details-info-box">
-      <p class="details-label">Prime Auto Gallery Selection</p>
-      <h1 id="detailName">Vehicle Name</h1>
-      <p id="detailShort" class="details-short">Vehicle short description</p>
-
-      <div class="details-price-box">
-        <span>Vehicle Price</span>
-        <h2 id="detailPrice">Price</h2>
-      </div>
-
-      <div class="details-spec-grid">
-        <div class="details-spec-card">
-          <i class="fa-solid fa-car-side" aria-hidden="true"></i>
-          <div><span>Category</span><strong id="detailCategory">Category</strong></div>
-        </div>
-        <div class="details-spec-card">
-          <i class="fa-solid fa-gears" aria-hidden="true"></i>
-          <div><span>Transmission</span><strong id="detailTransmission">Transmission</strong></div>
-        </div>
-        <div class="details-spec-card">
-          <i class="fa-solid fa-road" aria-hidden="true"></i>
-          <div><span>Drivetrain</span><strong id="detailDrivetrain">Drivetrain</strong></div>
-        </div>
-        <div class="details-spec-card">
-          <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
-          <div><span>Mileage</span><strong id="detailMileage">Mileage</strong></div>
-        </div>
-        <div class="details-spec-card">
-          <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-          <div><span>Status</span><strong id="detailStatus">Status</strong></div>
-        </div>
-        <div class="details-spec-card">
-          <i class="fa-solid fa-palette" aria-hidden="true"></i>
-          <div><span>Color</span><strong id="detailColor">Color</strong></div>
-        </div>
-      </div>
-
-      <div class="details-actions">
-        <a href="test-drive.html" class="hero-btn red-btn">Book Test Drive</a>
-        <a href="contact.html" class="hero-btn outline-dark-btn">Contact Salesman</a>
-      </div>
-    </div>
-
+    <!-- OVERVIEW SECTION -->
     <div class="details-overview">
-      <h2>Overview</h2>
-      <p id="detailDescription">Vehicle description will appear here.</p>
+      <h2><i class="fa-solid fa-file-lines"></i> Vehicle Overview</h2>
+      <p id="detailDescription">Loading…</p>
+
+      <div class="overview-tags" id="overviewTags"></div>
+
+      <div class="overview-blocks" id="overviewBlocks"></div>
     </div>
+
   </section>
 
+  <!--
+    Jad Abdallah – Custom UI Requirement:
+    Scroll-to-top button via ScrollToTop ES6 class in script.js.
+  -->
   <button id="scrollTopBtn" title="Back to top" aria-label="Scroll back to top">
-    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    <i class="fa-solid fa-arrow-up"></i>
   </button>
 
   <footer class="site-footer" role="contentinfo">
     <section class="footer">
       <h4>Prime Auto Gallery</h4>
-      <p>Explore our selected inventory and contact us for more details.</p>
+      <p>Luxury, performance, and collector vehicles selected for every lifestyle.</p>
       <div class="icons">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>
       <p class="footer-copy">&copy; 2026 Prime Auto Gallery. All rights reserved.</p>
     </section>
