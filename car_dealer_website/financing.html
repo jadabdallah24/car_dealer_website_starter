@@ -4,14 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prime Auto Gallery | Financing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <header class="sub-header" role="banner">
-    <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+    <nav class="navbar navbar-expand-lg sticky-nav" aria-label="Main navigation">
       <div class="container-fluid px-4">
         <a href="index.html" class="navbar-brand brand"><span>Prime</span> Auto Gallery</a>
         <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
@@ -32,45 +35,50 @@
       </div>
     </nav>
     <h1>Financing</h1>
+    <p class="sub-header-tagline">Flexible Plans for Exceptional Cars</p>
   </header>
 
   <section class="form-section" aria-label="Financing request form">
+    <p class="section-eyebrow">Apply Now</p>
     <h1>Get Financing Support</h1>
-    <p>Fill in the form below and our team will get back to you with flexible payment options.</p>
+    <p>Fill in the form below and our team will get back to you with flexible payment options tailored to your budget.</p>
+
     <form class="wide-form" id="financingForm" novalidate aria-label="Financing form">
+      <div id="finAlert" class="form-alert hidden" role="alert" aria-live="polite"></div>
+
       <div class="form-group">
         <label for="finName">Full Name <span class="req">*</span></label>
-        <input type="text" id="finName" placeholder="Full Name" required />
+        <input type="text" id="finName" placeholder="Enter your full name" required />
         <span class="field-error" id="finNameError" role="alert"></span>
       </div>
       <div class="form-group">
         <label for="finEmail">Email <span class="req">*</span></label>
-        <input type="email" id="finEmail" placeholder="Email" required />
+        <input type="email" id="finEmail" placeholder="Enter your email address" required />
         <span class="field-error" id="finEmailError" role="alert"></span>
       </div>
       <div class="form-group">
         <label for="finPhone">Phone Number <span class="req">*</span></label>
-        <input type="tel" id="finPhone" placeholder="Phone Number" required />
+        <input type="tel" id="finPhone" placeholder="e.g. +1 613 555 0000" required />
         <span class="field-error" id="finPhoneError" role="alert"></span>
       </div>
       <div class="form-group">
-        <label for="finBudget">Budget / Desired Monthly Payment</label>
-        <input type="number" id="finBudget" placeholder="Budget / Desired Monthly Payment" />
-      </div>
-      <div class="form-group">
-        <label for="finDown">Down Payment</label>
-        <input type="number" id="finDown" placeholder="Down Payment" />
-      </div>
-      <div class="form-group">
         <label for="finVehicle">Vehicle Interested In</label>
-        <input type="text" id="finVehicle" placeholder="Vehicle Interested In" />
+        <input type="text" id="finVehicle" placeholder="e.g. BMW M4 Competition" />
       </div>
       <div class="form-group">
-        <label for="finMessage">Message</label>
-        <textarea id="finMessage" rows="6" placeholder="Message"></textarea>
+        <label for="finBudget">Budget / Desired Monthly Payment ($)</label>
+        <input type="number" id="finBudget" placeholder="e.g. 1500" min="0" />
       </div>
-      <div id="finAlert" class="form-alert hidden" role="alert" aria-live="polite"></div>
-      <button class="hero-btn red-btn" type="submit">Send Request</button>
+      <div class="form-group">
+        <label for="finDown">Down Payment ($)</label>
+        <input type="number" id="finDown" placeholder="e.g. 10000" min="0" />
+      </div>
+      <div class="form-group">
+        <label for="finMessage">Additional Notes</label>
+        <textarea id="finMessage" rows="4" placeholder="Any additional information about your financing needs…"></textarea>
+      </div>
+
+      <button class="hero-btn gold-btn" type="submit" style="width:100%;padding:15px;">Send Financing Request</button>
     </form>
   </section>
 
@@ -81,12 +89,14 @@
   <footer class="site-footer" role="contentinfo">
     <section class="footer">
       <h4>Prime Auto Gallery</h4>
+      <p class="footer-tagline">Where Passion Meets Precision</p>
+      <div class="footer-divider"></div>
       <p>Flexible options to help you drive the vehicle you want.</p>
       <div class="icons">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       </div>
       <p class="footer-copy">&copy; 2026 Prime Auto Gallery. All rights reserved.</p>
     </section>

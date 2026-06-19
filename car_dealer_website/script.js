@@ -68,6 +68,7 @@ class InventoryFilter {
     this.clearBtn     = document.getElementById("clearFilterBtn");
     this.resultText   = document.getElementById("filterResultText");
     this.carCards     = document.querySelectorAll(".car-card");
+    this.noResultsMsg = document.getElementById("noResultsMsg");
 
     if (!this.searchInput || !this.bodyFilter || !this.filterBtn) return;
 
@@ -147,13 +148,18 @@ class InventoryFilter {
   }
 
   updateResultText(count) {
-    if (!this.resultText) return;
-    if (count === 0) {
-      this.resultText.textContent = "No vehicles found. Try changing your filters.";
-    } else if (count === 1) {
-      this.resultText.textContent = "1 vehicle found.";
-    } else {
-      this.resultText.textContent = `${count} vehicles found.`;
+    if (this.resultText) {
+      if (count === 0) {
+        this.resultText.textContent = "";
+      } else if (count === 1) {
+        this.resultText.textContent = "1 vehicle found.";
+      } else {
+        this.resultText.textContent = `${count} vehicles found.`;
+      }
+    }
+    // Show or hide the "No vehicles found" panel
+    if (this.noResultsMsg) {
+      this.noResultsMsg.classList.toggle("hidden", count > 0);
     }
   }
 }
@@ -319,3 +325,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ]);
 });
+
+// ── Sticky navbar: add .scrolled class after scrolling 10px ──
+(function () {
+  const nav = document.querySelector(".sticky-nav");
+  if (!nav) return;
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 10);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll(); // run once on page load
+})();
+
