@@ -335,3 +335,239 @@ document.addEventListener("DOMContentLoaded", () => {
   onScroll(); // run once on page load
 })();
 
+
+// ============================================================
+// CarDetails — reads ?car=KEY from the URL, looks it up in
+// carDatabase (car-data.js), and populates every element on
+// car-details.html.  Also powers the thumbnail gallery with
+// prev/next arrows, loading animation, and the 4-thumb strip.
+// ============================================================
+class CarDetails {
+  constructor() {
+    // Only run on car-details.html (check for the key element)
+    if (!document.getElementById("detailName")) return;
+
+    // Get the car key from the URL  e.g. ?car=m4-comp
+    const params = new URLSearchParams(window.location.search);
+    this.key     = params.get("car");
+
+    // Wait for car-data.js to be available, then load
+    if (typeof carDatabase !== "undefined") {
+      this.load();
+    } else {
+      // car-data.js loads after script.js — wait for it
+      window.addEventListener("load", () => this.load());
+    }
+  }
+
+  load() {
+    if (!this.key || !carDatabase[this.key]) {
+      this.showNotFound();
+      return;
+    }
+
+    this.car    = carDatabase[this.key];
+    this.photos = this.car.photos || [];
+    this.index  = 0;
+
+    this.populatePage();
+    this.buildThumbnails();
+    this.bindArrows();
+    this.showPhoto(0);
+  }
+
+  // ── Fill every text / meta field on the page ─────────────
+  populatePage() {
+    const c = this.car;
+
+    this.setText("detailName",        c.name);
+    this.setText("detailPrice",       c.price);
+    this.setText("detailDescription", c.description);
+    this.setText("detailShort",       `${c.year} · ${c.make} · ${c.badge}`);
+    this.setText("detailCategory",    c.badge      || "—");
+    this.setText("detailTransmission",c.transmission|| "—");
+    this.setText("detailDrivetrain",  c.drivetrain  || "—");
+    this.setText("detailMileage",     c.mileage     || "—");
+    this.setText("detailColor",       c.color       || "—");
+    this.setText("detailStatus",      "Available");
+
+    // Page title
+    document.title = `Prime Auto Gallery | ${c.name}`;
+
+    // Overview tags (badge + engine + power)
+    const tagsEl = document.getElementById("overviewTags");
+    if (tagsEl) {
+      const tags = [
+        { label: c.badge,   grey: false },
+        { label: c.engine,  grey: true  },
+        { label: c.power,   grey: true  },
+        { label: c.color,   grey: true  },
+      ].filter(t => t.label);
+
+      tagsEl.innerHTML = tags.map(t =>
+        `<span class="overview-tag ${t.grey ? "overview-tag-grey" : ""}">${t.label}</span>`
+      ).join("");
+    }
+
+    // Overview blocks: modifications + damage
+    const blocksEl = document.getElementById("overviewBlocks");
+    if (blocksEl) {
+      let html = "";
+
+      if (c.modifications) {
+        html += `
+          <div class="overview-block">
+            <h4><i class="fa-solid fa-wrench"></i> Modifications</h4>
+            <p>${c.modifications}</p>
+          </div>`;
+      }
+
+      if (c.damage) {
+        html += `
+          <div class="overview-block overview-block-warn">
+            <h4><i class="fa-solid fa-triangle-exclamation"></i> Damage Report</h4>
+            <p>${c.damage}</p>
+          </div>`;
+      } else {
+        html += `
+          <div class="overview-block overview-block-ok">
+            <h4><i class="fa-solid fa-shield-halved"></i> Damage Report</h4>
+            <p>No reported damage. This vehicle has a clean history.</p>
+          </div>`;
+      }
+
+      blocksEl.innerHTML = html;
+    }
+  }
+
+  // ── Build the thumbnail strip (max 4 visible + dots) ─────
+  buildThumbnails() {
+    this.stripEl    = document.getElementById("thumbnailGallery");
+    if (!this.stripEl) return;
+
+    this.thumbGroup = 0;            // which group of 4 is showing
+    this.thumbsPerGroup = 4;
+    this.renderThumbs();
+  }
+
+  renderThumbs() {
+    if (!this.stripEl) return;
+    this.stripEl.innerHTML = "";
+
+    const start = this.thumbGroup * this.thumbsPerGroup;
+    const end   = Math.min(start + this.thumbsPerGroup, this.photos.length);
+    const total = this.photos.length;
+
+    for (let i = start; i < end; i++) {
+      const img = document.createElement("img");
+      img.src   = this.photos[i];
+      img.alt   = `${this.car.name} view ${i + 1}`;
+      img.className = "thumb-img" + (i === this.index ? " thumb-active" : "");
+      img.addEventListener("click", () => this.showPhoto(i));
+      this.stripEl.appendChild(img);
+    }
+
+    // "..." button if there are more groups
+    if (total > this.thumbsPerGroup) {
+      const btn = document.createElement("button");
+      btn.className   = "thumb-dots";
+      btn.textContent = "···";
+      btn.title       = "More photos";
+      btn.addEventListener("click", () => {
+        const groups = Math.ceil(total / this.thumbsPerGroup);
+        this.thumbGroup = (this.thumbGroup + 1) % groups;
+        this.renderThumbs();
+      });
+      this.stripEl.appendChild(btn);
+    }
+  }
+
+  // ── Switch the main photo ─────────────────────────────────
+  showPhoto(idx) {
+    if (!this.photos.length) return;
+    this.index = idx;
+
+    const imgEl     = document.getElementById("detailImage");
+    const loader    = document.getElementById("imageLoader");
+    const counterEl = document.getElementById("imageCounter");
+
+    if (!imgEl) return;
+
+    // Show spinner
+    if (loader) loader.classList.remove("hidden");
+    imgEl.style.opacity = "0";
+
+    const src    = this.photos[idx];
+    const newImg = new Image();
+
+    newImg.onload = () => {
+      imgEl.src           = src;
+      imgEl.style.opacity = "1";
+      if (loader) loader.classList.add("hidden");
+    };
+
+    newImg.onerror = () => {
+      // If photo file missing, show a dark placeholder
+      imgEl.src           = "";
+      imgEl.style.opacity = "1";
+      if (loader) loader.classList.add("hidden");
+    };
+
+    newImg.src = src;
+
+    // Counter
+    if (counterEl) counterEl.textContent = `${idx + 1} / ${this.photos.length}`;
+
+    // Update thumbnail active state
+    this.renderThumbs();
+  }
+
+  // ── Prev / Next arrows ────────────────────────────────────
+  bindArrows() {
+    const prev = document.getElementById("galleryPrev");
+    const next = document.getElementById("galleryNext");
+
+    if (prev) prev.addEventListener("click", () => {
+      const newIdx = (this.index - 1 + this.photos.length) % this.photos.length;
+      this.showPhoto(newIdx);
+    });
+
+    if (next) next.addEventListener("click", () => {
+      const newIdx = (this.index + 1) % this.photos.length;
+      this.showPhoto(newIdx);
+    });
+
+    // Keyboard left/right arrows
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        const newIdx = (this.index - 1 + this.photos.length) % this.photos.length;
+        this.showPhoto(newIdx);
+      }
+      if (e.key === "ArrowRight") {
+        const newIdx = (this.index + 1) % this.photos.length;
+        this.showPhoto(newIdx);
+      }
+    });
+  }
+
+  // ── Helper: safely set text content ──────────────────────
+  setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value || "—";
+  }
+
+  // ── Car not found in database ─────────────────────────────
+  showNotFound() {
+    const nameEl = document.getElementById("detailName");
+    if (nameEl) nameEl.textContent = "Vehicle Not Found";
+
+    const descEl = document.getElementById("detailDescription");
+    if (descEl) descEl.textContent = "This vehicle could not be found. It may have been sold or the link is incorrect.";
+
+    const priceEl = document.getElementById("detailPrice");
+    if (priceEl) priceEl.textContent = "—";
+  }
+}
+
+// Boot on DOM ready
+document.addEventListener("DOMContentLoaded", () => new CarDetails());
