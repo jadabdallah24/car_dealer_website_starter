@@ -10,7 +10,7 @@
 
 🌐 **Live URL:** [https://prime-auto-gallery.onrender.com](https://prime-auto-gallery.onrender.com)
 
-📁 **GitHub Repository:** *(add your repository link here)*
+📁 **GitHub Repository:** *(https://github.com/jadabdallah24/car_dealer_website_starter)*
 
 ---
 
