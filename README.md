@@ -1,7 +1,7 @@
 # Prime Auto Gallery
 
-**Student:** Jad Abdallah
-**Course:** Full Stack Development – Final Project 2026
+**Student:** Jad Abdallah  
+**Course:** Full Stack Development – Final Project 2026  
 **Institution:** Lebanese University, Faculty of Engineering – Branch 2, Roumieh
 
 ---
@@ -10,7 +10,7 @@
 
 🌐 **Live URL:** [https://prime-auto-gallery.onrender.com](https://prime-auto-gallery.onrender.com)
 
-📁 **GitHub Repository:** *(add your repository link here)*
+📁 **GitHub Repository:** [https://github.com/jadabdallah24/car_dealer_website_starter/tree/main](https://github.com/jadabdallah24/car_dealer_website_starter/tree/main)
 
 ---
 
@@ -40,6 +40,7 @@ The project uses a **Node.js + Express** backend to securely protect API keys an
 - Scroll-to-top button that appears after scrolling 300px
 - Sticky frosted-glass navbar that darkens on scroll
 - Fully mobile-responsive across all pages and screen sizes
+- 🐧 **Easter egg** — hidden interactive feature (see below)
 
 ---
 
@@ -55,6 +56,21 @@ The project uses a **Node.js + Express** backend to securely protect API keys an
 | `test-drive.html` | Test drive booking form with date, time, and validation |
 | `about.html` | Dealership story, values, showroom gallery, and location map |
 | `contact.html` | Contact form, showroom photo, info cards, and embedded Google Map |
+
+---
+
+## Easter Egg 🐧
+
+A hidden feature is built into the website as a fun interactive element.
+
+**How to trigger it:**  
+Click the **Prime Auto Gallery** logo in the navbar **5 times quickly** (within 1.5 seconds).
+
+**What happens:**  
+A dancing penguin appears on screen. You can **drag it around the page** with your mouse or finger on mobile. Click the × button to dismiss it.
+
+**Implementation details:**  
+The easter egg is implemented as the `PenguinEasterEgg` ES6 class in `script.js`. It tracks consecutive clicks on the navbar brand element using a counter that resets after 1.5 seconds of inactivity. On the 5th click, the penguin element is revealed and made draggable via mouse and touch events. The penguin HTML element (`#penguinEasterEgg`) is included on every page but hidden by default with the `.hidden` CSS class.
 
 ---
 
@@ -146,8 +162,8 @@ npm start
 http://localhost:3000
 ```
 
-> ⚠️ If you see `EADDRINUSE: address already in use :::3000`, another process is still using the port.
-> Run `netstat -ano | findstr :3000` in PowerShell, find the PID number on the right, then run
+> ⚠️ If you see `EADDRINUSE: address already in use :::3000`, another process is still using the port.  
+> Run `netstat -ano | findstr :3000` in PowerShell, find the PID number on the right, then run  
 > `taskkill /PID <number> /F` to stop it. Then run `node server.js` again.
 
 ---
@@ -192,6 +208,7 @@ Implementation: the `ScrollToTop` ES6 class in `script.js` listens for the `scro
 | `InventoryFilter` | `script.js` | Filters inventory cards by name, category, and price range |
 | `FormValidator` | `script.js` | Real-time inline validation and success/error alert on submit |
 | `CarDetails` | `script.js` | Reads `?car=` URL parameter and populates car-details.html with data and gallery |
+| `PenguinEasterEgg` | `script.js` | Hidden interactive easter egg triggered by clicking the logo 5 times |
 | `PrimeAIChat` | `ai-chat.js` | AI chat widget — POSTs to `/api/ai` and displays the assistant reply |
 | `ApiCarsSearch` | `api-cars.js` | GETs `/api/cars` and renders live vehicle specification cards |
 
@@ -226,7 +243,7 @@ Implementation: the `ScrollToTop` ES6 class in `script.js` listens for the `scro
 
 ## Deployment
 
-The website is deployed on **Render** at:
+The website is deployed on **Render** at:  
 **[https://prime-auto-gallery.onrender.com](https://prime-auto-gallery.onrender.com)**
 
 Render was chosen because the project includes a Node.js backend. GitHub Pages and Netlify only support static frontend hosting and cannot run an Express server.
@@ -316,6 +333,47 @@ The `car-details.html` page was completely blank because `script.js` was missing
 
 ---
 
+## AI-Use Appendix
+
+### Tools Used
+
+| Tool | Purpose |
+|---|---|
+| Claude (Anthropic) | Code review, Bootstrap migration, ES6 class architecture, form validation, AI chat integration, UI/UX design, debugging, README |
+
+### Sample Prompts Used
+
+1. *"Review my car dealership website and tell me what I should improve to match the project requirements."*
+
+2. *"Help me connect API Ninjas Cars API to my website using a Node.js backend so the API key is not exposed."*
+
+3. *"Create a car details page where the image is on the left, the specifications are on the right, and thumbnails under the image change the main picture."*
+
+4. *"Help me add an AI assistant to my car dealership website using OpenAI and Express."*
+
+5. *"Write a CarDetails ES6 class that reads the ?car= URL parameter, looks it up in carDatabase, and populates all the placeholder elements on car-details.html including the thumbnail gallery with prev/next arrows."*
+
+6. *"Help me deploy my Node.js project on Render and fix the deployment errors."*
+
+### What the AI Got Wrong
+
+**1. Bootstrap navbar background override**  
+Claude's initial Bootstrap nav used `bg-dark` which turned the navbar black on all pages including the hero where the background should be transparent. I removed `bg-dark` and added `background: transparent !important` in CSS, then added a dark background only on the collapsed mobile drawer via a media query.
+
+**2. `card.style.display = "block"` breaking the flex layout**  
+The AI reset hidden cards to `display: block`, which pulled them out of the flex row and caused a single-column broken layout after clearing filters. I fixed it by resetting to `""` (empty string) so CSS's original `display` value from the stylesheet takes over.
+
+**3. Wrong OpenAI SDK method**  
+The initial `server.js` used `openai.responses.create` with a non-existent model name. I corrected it to `openai.chat.completions.create` with `gpt-4o-mini`.
+
+---
+
+## Screenshots
+
+*(Add screenshots here — mobile 375px, tablet 768px, desktop 1440px)*
+
+---
+
 ## Conclusion
 
-Prime Auto Gallery is a complete full-stack luxury car dealership website that combines responsive frontend design, dynamic JavaScript functionality, external API integration, a secure Node.js backend, and an AI-powered assistant. The project demonstrates skills in semantic HTML, advanced CSS with glassmorphism and custom properties, ES6 class-based JavaScript, REST API consumption, backend development with Express, environment variable security, and production deployment with Render.
+Prime Auto Gallery is a complete full-stack luxury car dealership website that combines responsive frontend design, dynamic JavaScript functionality, external API integration, a secure Node.js backend, and an AI-powered assistant. The project also includes a custom easter egg as an additional interactive feature. It demonstrates skills in semantic HTML, advanced CSS with glassmorphism and custom properties, ES6 class-based JavaScript, REST API consumption, backend development with Express, environment variable security, and production deployment with Render.
