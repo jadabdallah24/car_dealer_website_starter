@@ -574,18 +574,24 @@ document.addEventListener("DOMContentLoaded", () => new CarDetails());
 
 
 // Easter egg:
-// Click the Prime Auto Gallery logo 5 times to reveal the hidden dancing penguin.
+// Click the Prime Auto Gallery logo 5 times to reveal a draggable dancing penguin.
 class PenguinEasterEgg {
   constructor() {
     this.logo = document.querySelector(".brand");
     this.penguin = document.getElementById("penguinEasterEgg");
     this.closeBtn = document.getElementById("closePenguin");
+
     this.clickCount = 0;
     this.resetTimer = null;
+
+    this.isDragging = false;
+    this.offsetX = 0;
+    this.offsetY = 0;
 
     if (!this.logo || !this.penguin) return;
 
     this.addEvents();
+    this.makeDraggable();
   }
 
   addEvents() {
@@ -610,7 +616,8 @@ class PenguinEasterEgg {
     });
 
     if (this.closeBtn) {
-      this.closeBtn.addEventListener("click", () => {
+      this.closeBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
         this.penguin.classList.add("hidden");
       });
     }
@@ -618,10 +625,76 @@ class PenguinEasterEgg {
 
   showPenguin() {
     this.penguin.classList.remove("hidden");
+  }
 
-    setTimeout(() => {
-      this.penguin.classList.add("hidden");
-    }, 7000);
+  makeDraggable() {
+    this.penguin.addEventListener("mousedown", (event) => {
+      this.startDrag(event.clientX, event.clientY);
+    });
+
+    document.addEventListener("mousemove", (event) => {
+      this.drag(event.clientX, event.clientY);
+    });
+
+    document.addEventListener("mouseup", () => {
+      this.stopDrag();
+    });
+
+    // Mobile touch support
+    this.penguin.addEventListener("touchstart", (event) => {
+      const touch = event.touches[0];
+      this.startDrag(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener("touchmove", (event) => {
+      if (!this.isDragging) return;
+
+      const touch = event.touches[0];
+      this.drag(touch.clientX, touch.clientY);
+
+      event.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener("touchend", () => {
+      this.stopDrag();
+    });
+  }
+
+  startDrag(clientX, clientY) {
+    if (this.penguin.classList.contains("hidden")) return;
+
+    const rect = this.penguin.getBoundingClientRect();
+
+    this.isDragging = true;
+    this.offsetX = clientX - rect.left;
+    this.offsetY = clientY - rect.top;
+
+    this.penguin.classList.add("dragging");
+
+    // Switch from bottom positioning to top positioning
+    this.penguin.style.bottom = "auto";
+  }
+
+  drag(clientX, clientY) {
+    if (!this.isDragging) return;
+
+    let newLeft = clientX - this.offsetX;
+    let newTop = clientY - this.offsetY;
+
+    const maxLeft = window.innerWidth - this.penguin.offsetWidth;
+    const maxTop = window.innerHeight - this.penguin.offsetHeight;
+
+    // Keep penguin inside the screen
+    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+    newTop = Math.max(0, Math.min(newTop, maxTop));
+
+    this.penguin.style.left = `${newLeft}px`;
+    this.penguin.style.top = `${newTop}px`;
+  }
+
+  stopDrag() {
+    this.isDragging = false;
+    this.penguin.classList.remove("dragging");
   }
 }
 

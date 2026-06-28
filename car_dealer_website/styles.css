@@ -1690,21 +1690,75 @@ body::before {
 /* PRIME PENGUIN EASTER EGG */
 /* ============================= */
 
+/* ============================= */
+/* PRIME PENGUIN EASTER EGG */
+/* ============================= */
+
 .penguin-easter-egg {
   position: fixed;
   left: 25px;
   bottom: 90px;
-  width: 220px;
-  background: #111;
-  color: #fff;
-  border-radius: 18px;
-  padding: 18px 12px 14px;
+  width: 180px;
   z-index: 3000;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
-  animation: penguinPop 0.4s ease;
   text-align: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  animation: penguinPop 0.4s ease;
 }
 
+/* When dragging */
+.penguin-easter-egg.dragging {
+  cursor: grabbing;
+}
+
+/* Remove black background/card style */
+.penguin-easter-egg {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* Close button floating beside penguin */
+.close-penguin {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #f44336;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  z-index: 5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.close-penguin:hover {
+  background: #111;
+}
+
+.penguin-text {
+  color: #fff;
+  background: rgba(17, 17, 17, 0.75);
+  display: inline-block;
+  font-size: 12px;
+  padding: 6px 10px;
+  margin-top: 4px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 600px) {
+  .penguin-easter-egg {
+    left: 12px;
+    bottom: 75px;
+    width: 150px;
+  }
+}
 .close-penguin {
   position: absolute;
   top: 8px;
