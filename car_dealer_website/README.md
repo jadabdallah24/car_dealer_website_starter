@@ -1,17 +1,45 @@
 # Prime Auto Gallery
 
-**Student:** Jad Abdallah  
-**Course:** Full Stack Development – Final Project 2026  
-**Lebanese University, Faculty of Engineering – Branch 2, Roumieh**
+**Student:** Jad Abdallah
+**Course:** Full Stack Development – Final Project 2026
+**Institution:** Lebanese University, Faculty of Engineering – Branch 2, Roumieh
 
 ---
 
-## Project Description
+## Live Website
 
-Prime Auto Gallery is a fully responsive luxury car dealership website built with HTML5, CSS3, Bootstrap 5, and vanilla JavaScript (ES6 classes). The site showcases a curated inventory of 18 premium and performance vehicles, allows visitors to search and filter cars, view detailed vehicle specifications with a multi-photo gallery, book test drives, request financing, and look up real-world vehicle data via a live API. A custom AI assistant powered by OpenAI GPT-4o-mini provides intelligent vehicle recommendations and comparisons.
+🌐 **Live URL:** [https://prime-auto-gallery.onrender.com](https://prime-auto-gallery.onrender.com)
 
-**Live URL:** *(add your Vercel / Netlify / GitHub Pages URL here)*  
-**GitHub Repository:** *(add your repo URL here)*
+📁 **GitHub Repository:** *(add your repository link here)*
+
+---
+
+## Project Overview
+
+Prime Auto Gallery is a full-stack luxury car dealership website built as a Final Project for the Full Stack Development course. The website allows users to browse a curated inventory of 18 premium and performance vehicles, filter by category, name, and price range, view detailed vehicle pages with multi-angle image galleries, book test drives, request financing, search live vehicle specifications through an external API, and interact with an AI-powered vehicle assistant.
+
+The project uses a **Node.js + Express** backend to securely protect API keys and proxy requests to both the API Ninjas Cars API and the OpenAI Chat Completions API. The website is deployed on **Render** because it includes server-side functionality that cannot be hosted on static platforms like GitHub Pages.
+
+---
+
+## Main Features
+
+- Responsive luxury automotive interface with dark glassmorphism design
+- Inventory page with real-time search, category filter, and price range filter
+- Dynamic vehicle details page powered by URL parameters (`?car=key`)
+- Multi-photo vehicle gallery with 5 images per car (front, rear, interior, side profile)
+- Previous/next navigation arrows and keyboard arrow key support
+- Thumbnail strip with group pagination for galleries with more than 4 photos
+- Loading animation when switching gallery images
+- Live car specification search powered by API Ninjas Cars API
+- Prime AI Assistant powered by OpenAI GPT-4o-mini with full inventory context
+- Test drive booking form with real-time field validation
+- Financing request form with real-time field validation
+- Contact page with embedded Google Map and showroom photo
+- About page with showroom gallery, team story, and location map
+- Scroll-to-top button that appears after scrolling 300px
+- Sticky frosted-glass navbar that darkens on scroll
+- Fully mobile-responsive across all pages and screen sizes
 
 ---
 
@@ -19,173 +47,275 @@ Prime Auto Gallery is a fully responsive luxury car dealership website built wit
 
 | Page | Description |
 |---|---|
-| `index.html` | Home – cinematic hero, category cards, featured vehicles, services section, CTA |
-| `inventory.html` | Full inventory with search by name, category filter, and price range filter |
-| `car-details.html` | Individual vehicle detail page with 5-photo gallery, spec tiles, modifications, and damage report |
-| `financing.html` | Financing request form with real-time validation |
-| `test-drive.html` | Test drive booking form with date/time picker and real-time validation |
-| `api-specs.html` | Live car specifications search powered by API Ninjas Cars API |
-| `about.html` | Dealership story, values, showroom gallery, and embedded location map |
-| `contact.html` | Contact form with showroom photo, embedded Google Map, and info cards |
+| `index.html` | Homepage — hero, category cards, featured vehicles, services, CTA |
+| `inventory.html` | Full vehicle inventory with search, category filter, and price range filter |
+| `car-details.html` | Dynamic vehicle detail page — gallery, specs, modifications, damage report |
+| `api-specs.html` | Live vehicle specification search powered by API Ninjas |
+| `financing.html` | Financing request form with validation |
+| `test-drive.html` | Test drive booking form with date, time, and validation |
+| `about.html` | Dealership story, values, showroom gallery, and location map |
+| `contact.html` | Contact form, showroom photo, info cards, and embedded Google Map |
 
 ---
 
 ## APIs Used
 
 ### 1. API Ninjas – Cars API
-**URL:** `https://api.api-ninjas.com/v1/cars`  
-Requires a registered API key sent via `X-Api-Key` header — proxied through the Express backend so the key is never exposed in frontend code.  
-Used on `api-specs.html` to fetch real vehicle specs (fuel type, cylinders, transmission, drivetrain, MPG, displacement) by make, model, and year.
 
-Features implemented over the API response:
-- Loading state with spinner
-- Error state (network / API key failure)
-- Empty state (no results found)
-- Polished two-column result cards
+**Endpoint:** `https://api.api-ninjas.com/v1/cars`
+
+Used on `api-specs.html` to fetch real vehicle specifications (fuel type, cylinders, transmission, drivetrain, city/highway MPG, displacement) based on make, model, and year entered by the user.
+
+The request is proxied through the Express backend so the API key is never exposed in frontend JavaScript.
+
+Implemented states:
+
+- Loading spinner while fetching
+- Error message if the key is invalid or the network fails
+- Empty state message if no results are found
+- Clean two-column result cards with all available spec fields
 
 ### 2. OpenAI – Chat Completions API (GPT-4o-mini)
-**URL:** `https://api.openai.com/v1/chat/completions`  
-Key loaded server-side from `.env` — never sent to the browser.  
-Used to power the **Prime AI Assistant** chat widget present on every page.
 
-Features:
-- Full inventory context injected as system prompt
-- Quick suggestion buttons (Best coupe under $80K, Compare M4 and RS7, etc.)
-- Graceful error messages for quota exceeded, invalid key, or server offline
-- "Thinking…" loading indicator while waiting for response
+**Endpoint:** `https://api.openai.com/v1/chat/completions`
+
+Used to power the **Prime AI Assistant** chat widget available on every page of the website.
+
+The OpenAI API key is stored in `.env` and loaded server-side only — it is never sent to or visible in the browser.
+
+The assistant is given the full vehicle inventory as a system prompt context and is instructed to only respond to questions about Prime Auto Gallery vehicles, comparisons, financing guidance, and test drive bookings.
+
+Implemented features:
+
+- Quick suggestion buttons (e.g. *Best coupe under $80,000*, *Compare M4 and RS7*)
+- "Thinking…" loading indicator while waiting for a response
+- Graceful fallback messages for quota exceeded, invalid key, or server offline
+- User messages displayed in gold, bot replies in dark glass bubbles
 
 ---
 
 ## Backend
 
-The project uses a lightweight **Node.js + Express** backend (`server.js`) for two purposes:
+The backend is a lightweight **Node.js + Express** server in `server.js`.
 
-1. **Proxying the API Ninjas request** — keeps the API key server-side
-2. **Proxying the OpenAI request** — keeps the OpenAI key server-side and injects the full inventory as context
+It handles two API proxy routes:
 
-To run locally:
+| Route | Method | Purpose |
+|---|---|---|
+| `/api/cars` | GET | Proxies requests to API Ninjas Cars API |
+| `/api/ai` | POST | Sends messages to OpenAI and returns the assistant reply |
+
+Static files (HTML, CSS, JS, images) are also served from the same Express server using `express.static`.
+
+The backend is required because API keys must never be placed directly in frontend JavaScript files — they would be visible to anyone who opens the browser developer tools.
+
+---
+
+## Running Locally
+
+**Step 1 — Install dependencies**
 
 ```bash
-cd car_dealer_website
 npm install
+```
+
+**Step 2 — Create the `.env` file**
+
+Create a file named `.env` in the same folder as `server.js` and add your keys:
+
+```env
+API_NINJAS_KEY=your_api_ninjas_key_here
+OPENAI_API_KEY=your_openai_key_here
+```
+
+**Step 3 — Start the server**
+
+```bash
 node server.js
 ```
 
-Then open `http://localhost:3000` in your browser.
+or:
 
-Add your API keys to the `.env` file:
+```bash
+npm start
+```
+
+**Step 4 — Open the website**
 
 ```
-OPENAI_API_KEY=sk-your-key-here
-API_NINJAS_KEY=your-ninjas-key-here
+http://localhost:3000
 ```
+
+> ⚠️ If you see `EADDRINUSE: address already in use :::3000`, another process is still using the port.
+> Run `netstat -ano | findstr :3000` in PowerShell, find the PID number on the right, then run
+> `taskkill /PID <number> /F` to stop it. Then run `node server.js` again.
 
 ---
 
-## Custom UI Requirement – Scroll-to-Top Button
+## Environment Variables
 
-**Assignment:** Add a scroll-to-top button (with animation) that appears after scrolling.
+The `.env` file is **not included** in the GitHub repository for security reasons.
 
-A fixed circular button appears in the bottom-right corner after the user scrolls down more than 300px. Clicking it smoothly scrolls back to the top of the page. The button fades in and out using a CSS transition triggered by the `show` class. The logic lives in the `ScrollToTop` ES6 class inside `script.js` and is present on every page.
+Required variables:
+
+```env
+API_NINJAS_KEY=your_api_ninjas_key_here
+OPENAI_API_KEY=your_openai_key_here
+```
+
+On Render, these are set directly in the **Environment** tab of the service dashboard — no `.env` file is needed on the server.
 
 ---
 
-## JavaScript ES6 Classes
+## Custom UI Requirement — Scroll-to-Top Button
+
+The scroll-to-top button is the custom UI feature implemented for this project.
+
+Behaviour:
+
+- Hidden by default
+- Fades and slides in after the user scrolls more than 300px
+- Fixed in the bottom-right corner on every page
+- Smoothly scrolls the page back to the top when clicked
+- Fades back out when the user returns to the top
+
+Implementation: the `ScrollToTop` ES6 class in `script.js` listens for the `scroll` event and toggles a `.show` CSS class that triggers the fade/slide transition defined in `styles.css`.
+
+---
+
+## JavaScript Classes
 
 | Class | File | Purpose |
 |---|---|---|
 | `ScrollToTop` | `script.js` | Scroll-to-top button with show/hide animation |
-| `ButtonLoadingAnimation` | `script.js` | Spinner animation on button click |
-| `InventoryFilter` | `script.js` | Filters inventory cards by name, category, and price |
-| `FormValidator` | `script.js` | Real-time inline validation + success/error alerts |
-| `CarDetails` | `script.js` | Reads URL parameter, populates car-details.html with photos and specs |
-| `PrimeAIChat` | `ai-chat.js` | AI chat widget — sends messages to backend, displays replies |
-| `ApiCarsSearch` | `api-cars.js` | Fetches and renders live vehicle specs from API Ninjas |
+| `ButtonLoadingAnimation` | `script.js` | Temporary spinner on `.hero-btn` click |
+| `InventoryFilter` | `script.js` | Filters inventory cards by name, category, and price range |
+| `FormValidator` | `script.js` | Real-time inline validation and success/error alert on submit |
+| `CarDetails` | `script.js` | Reads `?car=` URL parameter and populates car-details.html with data and gallery |
+| `PrimeAIChat` | `ai-chat.js` | AI chat widget — POSTs to `/api/ai` and displays the assistant reply |
+| `ApiCarsSearch` | `api-cars.js` | GETs `/api/cars` and renders live vehicle specification cards |
 
 ---
 
 ## Inventory
 
-18 vehicles across 5 categories:
+18 vehicles across 5 categories. Each vehicle includes a name, badge, price, mileage, transmission, drivetrain, engine, power output, colour, full description, modifications list, damage report status, and 5 gallery photos.
 
 | Category | Vehicles |
 |---|---|
-| Coupe | BMW M4 Competition, BMW M4 Silver Surfer, Chevrolet Corvette Stingray, Toyota GT86 TRD |
-| Supercar | Porsche 911 Turbo S, Chevrolet Corvette ZR1, McLaren 765LT, Ferrari 488 Pista, Ferrari 812 Competizione, Lamborghini Revuelto |
+| Coupe | BMW M4 Competition, BMW M4 Silver Surfer Spec, Chevrolet Corvette Stingray, Toyota GT86 TRD |
+| Supercar | Porsche 911 Turbo S, Corvette ZR1, McLaren 765LT Batman Spec, Ferrari 488 Pista, Ferrari 812 Competizione, Lamborghini Revuelto |
 | SUV | Mercedes-Benz GLE 450, Mercedes-Maybach GLS 600, Range Rover Sport SVR |
 | Sedan | Audi S4 Premium, Audi RS7 ABT Legacy |
 | Hatchback | Volkswagen Golf R, GR Yaris Rally Spec, Honda Civic Type R |
-
-Each vehicle includes: name, price, year, mileage, transmission, drivetrain, engine, power output, colour, full description, modifications list, damage report, and 5 gallery photos.
 
 ---
 
 ## Design
 
-- **Theme:** Dark luxury — obsidian backgrounds, champagne gold accents, crimson highlights
-- **Fonts:** Cormorant Garamond (headings) + Inter (body)
-- **Effects:** Glassmorphism panels (`backdrop-filter: blur`), gold hairline rules, subtle grain texture, shimmer button animations, scroll-triggered navbar opacity
-- **Responsive:** Large desktop → laptop → tablet (2-col) → mobile (1-col), with collapsible Bootstrap navbar
-
----
-
-## AI-Use Appendix
-
-### Tools Used
-
-| Tool | Purpose |
+| Element | Detail |
 |---|---|
-| Claude (Anthropic) | Code review, Bootstrap migration, ES6 class architecture, form validation, AI chat integration, UI/UX design, README |
-
-### Sample Prompts
-
-1. *"I have a car dealer website built with plain HTML/CSS/JS. Review the code and tell me what I need to improve to meet my university project requirements."*
-
-2. *"Migrate my custom hamburger menu to Bootstrap 5's navbar collapse component while keeping my existing CSS styling."*
-
-3. *"Write an ES6 class called FormValidator that accepts a form ID, alert div ID, and an array of field descriptors with custom validate functions. It should show inline errors on input and display a styled success/error alert on submit."*
-
-4. *"Write a CarDetails ES6 class that reads the ?car= URL parameter, looks it up in carDatabase, and populates all the placeholder elements on car-details.html including the thumbnail gallery with prev/next arrows."*
-
-### What the AI Got Wrong
-
-**1. Bootstrap navbar background override**  
-Claude's initial Bootstrap nav used `bg-dark` which turned the navbar black on all pages including the hero where the background should be transparent. I removed `bg-dark` and added `background: transparent !important` in CSS, then added a dark background only on the collapsed mobile drawer via a media query.
-
-**2. `card.style.display = "block"` breaking the flex layout**  
-The AI reset hidden cards to `display: block`, which pulled them out of the flex row and caused a single-column broken layout after clearing filters. I fixed it by resetting to `""` (empty string) so CSS's original `display` value from the stylesheet takes over.
-
-**3. Wrong OpenAI SDK method**  
-The initial `server.js` used `openai.responses.create` with a non-existent model name. I corrected it to `openai.chat.completions.create` with `gpt-4o-mini`.
-
----
-
-## Screenshots
-
-*(Add screenshots here – mobile 375px, tablet 768px, desktop 1440px)*
-
----
-
-## Technologies
-
-- HTML5 (semantic elements: `<header>`, `<nav>`, `<section>`, `<article>`, `<footer>`)
-- CSS3 (custom properties, glassmorphism, Flexbox, CSS Grid, responsive media queries)
-- Bootstrap 5.3.3 (navbar collapse, grid, utility classes)
-- JavaScript ES6 (7 classes across 3 files)
-- Node.js + Express (backend proxy for API keys)
-- dotenv (environment variable management)
-- OpenAI Node.js SDK v4
-- Font Awesome 6.5
-- Google Fonts (Cormorant Garamond, Inter)
-- API Ninjas Cars API
-- OpenAI GPT-4o-mini
+| Theme | Dark luxury — obsidian backgrounds, champagne gold accents |
+| Fonts | Cormorant Garamond (headings) · Inter (body) |
+| Effects | Glassmorphism panels, gold hairline rules, grain texture overlay, shimmer button animation |
+| Navbar | Frosted glass, transparent on load, darkens on scroll |
+| Buttons | Black background with gold border and gold text; fills gold on hover |
+| Responsive | 3-col → 2-col → 1-col grid, collapsible Bootstrap navbar |
 
 ---
 
 ## Deployment
 
-**Option A – Static only (no AI chat or API Ninjas)**  
-Upload all files to GitHub Pages or Netlify. The site will work except the AI chat widget and Car Specs page.
+The website is deployed on **Render** at:
+**[https://prime-auto-gallery.onrender.com](https://prime-auto-gallery.onrender.com)**
 
-**Option B – Full deployment with backend**  
-Deploy to a Node.js host such as Render, Railway, or Vercel (with serverless functions). Set `OPENAI_API_KEY` and `API_NINJAS_KEY` as environment variables on the platform. All features will work.
+Render was chosen because the project includes a Node.js backend. GitHub Pages and Netlify only support static frontend hosting and cannot run an Express server.
+
+Deployment steps used:
+
+1. Push the project to GitHub (excluding `.env` and `node_modules/`)
+2. Create a new **Web Service** on Render
+3. Set the root directory to the folder containing `server.js` and `package.json`
+4. Set build command: `npm install`
+5. Set start command: `node server.js`
+6. Add `API_NINJAS_KEY` and `OPENAI_API_KEY` in the Render **Environment** tab
+
+---
+
+## Security
+
+Files excluded from GitHub via `.gitignore`:
+
+```
+.env
+node_modules/
+```
+
+The `.env` file contains private API keys and must never be committed to a public repository. Environment variables are configured directly in the Render dashboard for production deployment.
+
+---
+
+## Issues Encountered and How They Were Fixed
+
+### 1. API Key Accidentally Pushed to GitHub
+
+The `.env` file was committed to GitHub by mistake early in development. It was removed from Git tracking using `git rm --cached .env`, added to `.gitignore`, and the affected API keys were rotated immediately.
+
+### 2. OpenAI Quota Error (HTTP 429)
+
+The AI assistant returned a `429 insufficient_quota` error when the OpenAI account had no active billing credits. The backend was updated to catch this specific error code and return a friendly message to the frontend instead of crashing the widget.
+
+### 3. Render Deployment — Root Directory Error
+
+Render initially failed to start the server because `package.json` was not found at the repository root. The Render root directory setting was corrected to point to the subfolder containing `server.js`.
+
+### 4. Thumbnail CSS Bleed
+
+The thumbnail images on the car details page were inheriting styles from the main vehicle image selector. The CSS was fixed by using a specific selector (`#detailImage`) for the main image and a separate class (`.thumb-img`) for thumbnails so the styles no longer conflict.
+
+### 5. EADDRINUSE Port Conflict
+
+Running `node server.js` twice without stopping the first instance caused a port conflict on 3000. Fixed by identifying the process ID with `netstat -ano | findstr :3000` and terminating it with `taskkill /PID <id> /F` before restarting the server.
+
+### 6. Car Details Page Showing Nothing
+
+The `car-details.html` page was completely blank because `script.js` was missing the `CarDetails` class entirely. The HTML placeholders existed but nothing was reading the `?car=` URL parameter or populating the page. The `CarDetails` class was written and added to `script.js`, and the script load order was corrected so `car-data.js` loads before `script.js`.
+
+---
+
+## Future Improvements
+
+- Favourite vehicles saved with `localStorage`
+- Side-by-side vehicle comparison tool
+- Recently viewed vehicles section
+- Admin panel for managing inventory
+- Real database integration (MongoDB or PostgreSQL)
+- User authentication for admin access
+- WhatsApp or direct messaging integration
+- Vehicle availability status management
+
+---
+
+## Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| HTML5 | Page structure and semantic markup |
+| CSS3 | Styling, glassmorphism, animations, responsive layout |
+| Bootstrap 5.3.3 | Navbar, grid system, utility classes |
+| JavaScript ES6 | Classes, DOM manipulation, event handling |
+| Node.js | Backend runtime |
+| Express.js | API proxy routes and static file serving |
+| dotenv | Secure environment variable loading |
+| OpenAI Node.js SDK v4 | OpenAI API integration |
+| API Ninjas Cars API | Live vehicle specification data |
+| Font Awesome 6.5 | Icons throughout the site |
+| Google Fonts | Cormorant Garamond + Inter typography |
+| Render | Full-stack deployment platform |
+| GitHub | Version control and source hosting |
+
+---
+
+## Conclusion
+
+Prime Auto Gallery is a complete full-stack luxury car dealership website that combines responsive frontend design, dynamic JavaScript functionality, external API integration, a secure Node.js backend, and an AI-powered assistant. The project demonstrates skills in semantic HTML, advanced CSS with glassmorphism and custom properties, ES6 class-based JavaScript, REST API consumption, backend development with Express, environment variable security, and production deployment with Render.

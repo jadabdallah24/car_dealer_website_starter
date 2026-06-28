@@ -571,3 +571,60 @@ class CarDetails {
 
 // Boot on DOM ready
 document.addEventListener("DOMContentLoaded", () => new CarDetails());
+
+
+// Easter egg:
+// Click the Prime Auto Gallery logo 5 times to reveal the hidden dancing penguin.
+class PenguinEasterEgg {
+  constructor() {
+    this.logo = document.querySelector(".brand");
+    this.penguin = document.getElementById("penguinEasterEgg");
+    this.closeBtn = document.getElementById("closePenguin");
+    this.clickCount = 0;
+    this.resetTimer = null;
+
+    if (!this.logo || !this.penguin) return;
+
+    this.addEvents();
+  }
+
+  addEvents() {
+    this.logo.addEventListener("click", (event) => {
+      this.clickCount++;
+
+      clearTimeout(this.resetTimer);
+
+      this.resetTimer = setTimeout(() => {
+        this.clickCount = 0;
+      }, 1500);
+
+      if (this.clickCount < 5) {
+        event.preventDefault();
+      }
+
+      if (this.clickCount >= 5) {
+        event.preventDefault();
+        this.showPenguin();
+        this.clickCount = 0;
+      }
+    });
+
+    if (this.closeBtn) {
+      this.closeBtn.addEventListener("click", () => {
+        this.penguin.classList.add("hidden");
+      });
+    }
+  }
+
+  showPenguin() {
+    this.penguin.classList.remove("hidden");
+
+    setTimeout(() => {
+      this.penguin.classList.add("hidden");
+    }, 7000);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  new PenguinEasterEgg();
+});

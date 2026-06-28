@@ -1685,3 +1685,329 @@ body::before {
   .ai-chat-box { width: calc(100vw - 24px); height: 480px; border-radius: var(--radius); }
   .ai-chat-toggle { padding: 12px 18px; font-size: 11px; }
 }
+
+/* ============================= */
+/* PRIME PENGUIN EASTER EGG */
+/* ============================= */
+
+.penguin-easter-egg {
+  position: fixed;
+  left: 25px;
+  bottom: 90px;
+  width: 220px;
+  background: #111;
+  color: #fff;
+  border-radius: 18px;
+  padding: 18px 12px 14px;
+  z-index: 3000;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  animation: penguinPop 0.4s ease;
+  text-align: center;
+}
+
+.close-penguin {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.mini-penguin {
+  --penguin-face: white;
+  --penguin-picorna: orange;
+  --penguin-skin: gray;
+
+  width: 160px;
+  height: 160px;
+  margin: 10px auto 0;
+  z-index: 4;
+  position: relative;
+  animation: penguinDance 0.7s ease-in-out infinite alternate;
+}
+
+.mini-penguin * {
+  position: absolute;
+}
+
+.mini-penguin .penguin-head {
+  width: 50%;
+  height: 45%;
+  background: linear-gradient(
+    45deg,
+    var(--penguin-skin),
+    rgb(239, 240, 228)
+  );
+  border-radius: 70% 70% 65% 65%;
+  top: 10%;
+  left: 25%;
+  z-index: 1;
+}
+
+.mini-penguin .face {
+  width: 60%;
+  height: 70%;
+  background-color: var(--penguin-face);
+  border-radius: 70% 70% 60% 60%;
+  top: 15%;
+}
+
+.mini-penguin .face.left {
+  left: 5%;
+}
+
+.mini-penguin .face.right {
+  right: 5%;
+}
+
+.mini-penguin .chin {
+  width: 90%;
+  height: 70%;
+  background-color: var(--penguin-face);
+  top: 25%;
+  left: 5%;
+  border-radius: 70% 70% 100% 100%;
+}
+
+.mini-penguin .eye {
+  width: 15%;
+  height: 17%;
+  background-color: black;
+  top: 45%;
+  border-radius: 50%;
+}
+
+.mini-penguin .eye.left {
+  left: 25%;
+}
+
+.mini-penguin .eye.right {
+  right: 25%;
+}
+
+.mini-penguin .eye-lid {
+  width: 150%;
+  height: 100%;
+  background-color: var(--penguin-face);
+  top: 25%;
+  left: -23%;
+  border-radius: 50%;
+}
+
+.mini-penguin .blush {
+  width: 15%;
+  height: 10%;
+  background-color: pink;
+  top: 65%;
+  border-radius: 50%;
+}
+
+.mini-penguin .blush.left {
+  left: 15%;
+}
+
+.mini-penguin .blush.right {
+  right: 15%;
+}
+
+.mini-penguin .beak {
+  height: 10%;
+  background-color: var(--penguin-picorna);
+  border-radius: 50%;
+}
+
+.mini-penguin .beak.top {
+  width: 20%;
+  top: 60%;
+  left: 40%;
+}
+
+.mini-penguin .beak.bottom {
+  width: 16%;
+  top: 65%;
+  left: 42%;
+}
+
+.mini-penguin .shirt {
+  font: bold 13px Helvetica, sans-serif;
+  top: 88px;
+  left: 67px;
+  z-index: 2;
+  color: #6a6969;
+}
+
+.mini-penguin .shirt div {
+  font-weight: initial;
+  top: 14px;
+  left: 8px;
+}
+
+.mini-penguin .shirt p {
+  color: #6a6969;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}
+
+.mini-penguin .penguin-body {
+  width: 53%;
+  height: 45%;
+  background: linear-gradient(
+    45deg,
+    rgb(134, 133, 133) 0%,
+    rgb(234, 231, 231) 25%,
+    white 67%
+  );
+  border-radius: 80% 80% 100% 100%;
+  top: 40%;
+  left: 23.5%;
+}
+
+.mini-penguin .penguin-body::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 45%;
+  background-color: var(--penguin-skin);
+  top: 10%;
+  left: 25%;
+  border-radius: 0% 0% 100% 100%;
+  opacity: 70%;
+}
+
+.mini-penguin .arm {
+  width: 30%;
+  height: 60%;
+  background: linear-gradient(
+    90deg,
+    var(--penguin-skin),
+    rgb(209, 210, 199)
+  );
+  border-radius: 30% 30% 30% 120%;
+  z-index: -1;
+}
+
+.mini-penguin .arm.left {
+  top: 35%;
+  left: 5%;
+  transform-origin: top left;
+  transform: rotate(130deg) scaleX(-1);
+  animation: 1.2s linear infinite penguinWave;
+}
+
+.mini-penguin .arm.right {
+  top: 0%;
+  right: -5%;
+  transform: rotate(-45deg);
+  transform-origin: top right;
+  animation: 1.2s linear infinite penguinWaveRight;
+}
+
+.mini-penguin .foot {
+  width: 15%;
+  height: 30%;
+  background-color: var(--penguin-picorna);
+  top: 85%;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.mini-penguin .foot.left {
+  left: 25%;
+  transform: rotate(80deg);
+}
+
+.mini-penguin .foot.right {
+  right: 25%;
+  transform: rotate(-80deg);
+}
+
+.penguin-text {
+  color: #fff;
+  font-size: 13px;
+  padding: 8px 0 0;
+  margin: 0;
+}
+
+@keyframes penguinWave {
+  10% {
+    transform: rotate(110deg) scaleX(-1);
+  }
+
+  20% {
+    transform: rotate(140deg) scaleX(-1);
+  }
+
+  30% {
+    transform: rotate(110deg) scaleX(-1);
+  }
+
+  40% {
+    transform: rotate(140deg) scaleX(-1);
+  }
+}
+
+@keyframes penguinWaveRight {
+  10% {
+    transform: rotate(-25deg);
+  }
+
+  20% {
+    transform: rotate(-55deg);
+  }
+
+  30% {
+    transform: rotate(-25deg);
+  }
+
+  40% {
+    transform: rotate(-55deg);
+  }
+}
+
+@keyframes penguinDance {
+  from {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  to {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+@keyframes penguinPop {
+  from {
+    transform: scale(0.3) rotate(-8deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .penguin-easter-egg {
+    left: 12px;
+    bottom: 75px;
+    width: 190px;
+  }
+
+  .mini-penguin {
+    width: 135px;
+    height: 135px;
+  }
+
+  .mini-penguin .shirt {
+    top: 74px;
+    left: 56px;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
