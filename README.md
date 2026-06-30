@@ -218,13 +218,13 @@ Implementation: the `ScrollToTop` ES6 class in `script.js` listens for the `scro
 
 18 vehicles across 5 categories. Each vehicle includes a name, badge, price, mileage, transmission, drivetrain, engine, power output, colour, full description, modifications list, damage report status, and 5 gallery photos.
 
-| Category  | Vehicles                                                                                                                        |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Coupe     | BMW M4 Competition, BMW M4 Silver Surfer Spec, Chevrolet Corvette Stingray, Toyota GT86 TRD                                     |
-| Supercar  | Porsche 911 Turbo S, Corvette ZR1, McLaren 765LT Batman Spec, Ferrari 488 Pista, Ferrari 812 Competizione, Lamborghini Revuelto |
-| SUV       | Mercedes-Benz GLE 450, Mercedes-Maybach GLS 600, Range Rover Sport SVR                                                          |
-| Sedan     | Audi S4 Premium, Audi RS7 ABT Legacy                                                                                            |
-| Hatchback | Volkswagen Golf R, GR Yaris Rally Spec, Honda Civic Type R                                                                      |
+| Category  | Vehicles                                                                                                                         |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Coupe     | BMW M4 Competition, BMW M4 Silver Surfer Spec, Chevrolet Corvette Stingray, Toyota GT86 TRD                                       |
+| Supercar  | Porsche 911 Turbo S, Corvette ZR1, McLaren 765LT Batman Spec, Ferrari 488 Pista, Ferrari 812 Competizione, Lamborghini Revuelto    |
+| SUV       | Mercedes-Benz GLE 450, Mercedes-Maybach GLS 600, Range Rover Sport SVR                                                            |
+| Sedan     | Audi S4 Premium, Audi RS7 ABT Legacy                                                                                              |
+| Hatchback | Volkswagen Golf R, GR Yaris Rally Spec, Honda Civic Type R                                                                        |
 
 ---
 
@@ -316,7 +316,7 @@ The `car-details.html` page was completely blank because `script.js` was missing
 ## Technologies Used
 
 | Technology            | Purpose                                               |
-| --------------------- | ----------------------------------------------------- |
+| ---------------------- | ----------------------------------------------------- |
 | HTML5                 | Page structure and semantic markup                    |
 | CSS3                  | Styling, glassmorphism, animations, responsive layout |
 | Bootstrap 5.3.3       | Navbar, grid system, utility classes                  |
@@ -324,7 +324,7 @@ The `car-details.html` page was completely blank because `script.js` was missing
 | Node.js               | Backend runtime                                       |
 | Express.js            | API proxy routes and static file serving              |
 | dotenv                | Secure environment variable loading                   |
-| OpenAI Node.js SDK v4 | OpenAI API integration                                |
+| OpenAI Node.js SDK v4  | OpenAI API integration                                |
 | API Ninjas Cars API   | Live vehicle specification data                       |
 | Font Awesome 6.5      | Icons throughout the site                             |
 | Google Fonts          | Cormorant Garamond + Inter typography                 |
@@ -338,7 +338,7 @@ The `car-details.html` page was completely blank because `script.js` was missing
 ### Tools Used
 
 | Tool               | Purpose                                                                                                                         |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Claude (Anthropic) | Code review, Bootstrap migration, ES6 class architecture, form validation, AI chat integration, UI/UX design, debugging, README |
 
 ### Sample Prompts Used
@@ -459,6 +459,9 @@ The Contact page includes contact information, a contact form, showroom details,
 ![Contact Page Screenshot 1](car_dealer_website/screenshots/contact1.png)
 
 ![Contact Page Screenshot 2](car_dealer_website/screenshots/contact2.png)
+
+---
+
 ## Conclusion
 
 Prime Auto Gallery is a complete full-stack luxury car dealership website that combines responsive frontend design, dynamic JavaScript functionality, external API integration, a secure Node.js backend, and an AI-powered assistant. The project also includes a custom easter egg as an additional interactive feature. It demonstrates skills in semantic HTML, advanced CSS with glassmorphism and custom properties, ES6 class-based JavaScript, REST API consumption, backend development with Express, environment variable security, and production deployment with Render.
