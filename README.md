@@ -370,21 +370,23 @@ The initial `server.js` used `openai.responses.create` with a non-existent model
 
 ## Screenshots
 
-All screenshots are stored in the `screenshots/` folder.
+All screenshots are stored inside the `car_dealer_website/` folder.
+
+---
 
 ### Home Page
 
 The homepage includes the hero section, navbar, vehicle categories, featured inventory, services, and call-to-action content.
 
-![Home Page Screenshot 1](screenshots/home1.png)
+![Home Page Screenshot 1](car_dealer_website/home1.png)
 
-![Home Page Screenshot 2](screenshots/home2.png)
+![Home Page Screenshot 2](car_dealer_website/home2.png)
 
-![Home Page Screenshot 3](screenshots/home3.png)
+![Home Page Screenshot 3](car_dealer_website/home3.png)
 
-![Home Page Screenshot 4](screenshots/home4.png)
+![Home Page Screenshot 4](car_dealer_website/home4.png)
 
-![Home Page Screenshot 5](screenshots/home5.png)
+![Home Page Screenshot 5](car_dealer_website/home5.png)
 
 ---
 
@@ -392,11 +394,72 @@ The homepage includes the hero section, navbar, vehicle categories, featured inv
 
 The inventory page displays the complete vehicle list and includes filtering by vehicle name, category, and price range.
 
-![Inventory Page Screenshot 1](screenshots/inventory1.png)
+![Inventory Page Screenshot 1](car_dealer_website/inventory1.png)
 
-![Inventory Page Screenshot 2](screenshots/inventory2.png)
+![Inventory Page Screenshot 2](car_dealer_website/inventory2.png)
 
 ---
+
+### Car Details Page
+
+The car details page presents an individual vehicle with a large image gallery, detailed specifications, modifications, damage report, and overview.
+
+![Car Details Page Screenshot 1](car_dealer_website/car-details1.png)
+
+![Car Details Page Screenshot 2](car_dealer_website/car-detail2.png)
+
+---
+
+### Financing Page
+
+The financing page includes a financing application form with validation and styled input sections.
+
+![Financing Page Screenshot 1](car_dealer_website/financing1.png)
+
+![Financing Page Screenshot 2](car_dealer_website/financing2.png)
+
+---
+
+### Test Drive Page
+
+The test drive page allows users to book a test drive by selecting their preferred vehicle, date, time, and contact information.
+
+![Test Drive Page Screenshot 1](car_dealer_website/test-drive1.png)
+
+![Test Drive Page Screenshot 2](car_dealer_website/test-drive2.png)
+
+---
+
+### API Specs Page
+
+The API Specs page allows users to search for real vehicle specifications using the API Ninjas Cars API.
+
+![API Specs Page Screenshot](car_dealer_website/car-specs.png)
+
+---
+
+### About Page
+
+The About page presents the dealership story, values, showroom sections, and visual brand identity.
+
+![About Page Screenshot 1](car_dealer_website/about1.png)
+
+![About Page Screenshot 2](car_dealer_website/about2.png)
+
+![About Page Screenshot 3](car_dealer_website/about3.png)
+
+![About Page Screenshot 4](car_dealer_website/about4.png)
+
+---
+
+### Contact Page
+
+The Contact page includes contact information, a contact form, showroom details, and location section.
+
+![Contact Page Screenshot 1](car_dealer_website/contact1.png)
+
+![Contact Page Screenshot 2](car_dealer_website/contact2.png)
+
 
 ### Car Details Page
 
