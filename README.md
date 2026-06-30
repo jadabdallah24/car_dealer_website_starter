@@ -298,6 +298,14 @@ Running `node server.js` twice without stopping the first instance caused a port
 
 The `car-details.html` page was completely blank because `script.js` was missing the `CarDetails` class entirely. The HTML placeholders existed but nothing was reading the `?car=` URL parameter or populating the page. The `CarDetails` class was written and added to `script.js`, and the script load order was corrected so `car-data.js` loads before `script.js`.
 
+### 7. API Ninjas "Invalid API Key" Error
+
+The Cars API search returned `"Invalid API Key"` even after confirming the key matched what was stored in `.env`. The first fix was discovering that `api-cars.js` had an old hardcoded key baked directly into the frontend JavaScript and was calling API Ninjas directly from the browser instead of going through the Express backend. This was corrected so the frontend calls `/api/cars` on the local server, which proxies the request using `API_NINJAS_KEY` from `.env`. The original key itself also turned out to be invalid at the source (confirmed with a direct `curl` test against the API Ninjas endpoint), so the key was regenerated from the API Ninjas dashboard and the `.env` file was updated with the new value.
+
+### 8. GitHub Push Protection Blocked a Commit Containing an API Key
+
+A push was rejected by GitHub's secret scanning push protection because an earlier commit included the OpenAI API key inside `car_dealer_website/.env`. Since the key had already been rotated, the secret was marked as resolved directly through GitHub's "I've already rotated/revoked this secret" option on the blocked-secret URL provided in the error message, which allowed the push to go through without rewriting git history. `.env` was confirmed to be listed in `.gitignore` going forward to prevent any future commits from including it.
+
 ---
 
 ## Future Improvements
@@ -388,6 +396,8 @@ The homepage includes the hero section, navbar, vehicle categories, featured inv
 
 ![Home Page Screenshot 5](car_dealer_website/screenshots/home5.png)
 
+![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/home%20AI.png)
+
 ---
 
 ### Inventory Page
@@ -435,6 +445,8 @@ The test drive page allows users to book a test drive by selecting their preferr
 The API Specs page allows users to search for real vehicle specifications using the API Ninjas Cars API.
 
 ![API Specs Page Screenshot](car_dealer_website/screenshots/car-specs.png)
+
+![API Specs Page Screenshot 2](car_dealer_website/screenshots/car-specs2.png)
 
 ---
 
