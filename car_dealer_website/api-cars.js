@@ -1,7 +1,5 @@
 class ApiCarsSearch {
   constructor() {
-    this.apiKey = "mBvT2QJBJmvFXzy2T0HMWyXYmIe2KiY9wg0TSKWN";
-
     this.makeInput = document.getElementById("apiMake");
     this.modelInput = document.getElementById("apiModel");
     this.yearInput = document.getElementById("apiYear");
@@ -53,7 +51,7 @@ class ApiCarsSearch {
       return;
     }
 
-    let apiUrl = `https://api.api-ninjas.com/v1/cars?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`;
+    let apiUrl = `/api/cars?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}`;
 
     if (year) {
       apiUrl += `&year=${encodeURIComponent(year)}`;
@@ -63,10 +61,7 @@ class ApiCarsSearch {
       this.showLoading();
 
       const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "X-Api-Key": this.apiKey
-        }
+        method: "GET"
       });
 
       const data = await response.json();
