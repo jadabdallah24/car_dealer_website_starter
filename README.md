@@ -443,7 +443,7 @@ The homepage includes the hero section, navbar, vehicle categories, featured inv
 
 ![Home Page Screenshot — Tablet](car_dealer_website/screenshots/home-full-tablet.png)
 
-![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/homeAI.png)
+![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/homeAI%20.png)
 
 ---
 
