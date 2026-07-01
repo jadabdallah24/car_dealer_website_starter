@@ -437,13 +437,13 @@ All screenshots are stored in the `screenshots/` folder.
 
 The homepage includes the hero section, navbar, vehicle categories, featured inventory, services, and call-to-action content.
 
-![Home Page Screenshot — Desktop](screenshots/home-full.png)
+![Home Page Screenshot — Desktop](car_dealer_website/screenshots/home-full.png)
 
-![Home Page Screenshot — Phone](screenshots/home-full-phone.png)
+![Home Page Screenshot — Phone](car_dealer_website/screenshots/home-full-phone.png)
 
-![Home Page Screenshot — Tablet](screenshots/home-full-tablet.png)
+![Home Page Screenshot — Tablet](car_dealer_website/screenshots/home-full-tablet.png)
 
-![Home Page Screenshot — Prime AI Assistant](screenshots/home%20AI.png)
+![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/homeAI.png)
 
 ---
 
@@ -451,11 +451,11 @@ The homepage includes the hero section, navbar, vehicle categories, featured inv
 
 The inventory page displays the complete vehicle list and includes filtering by vehicle name, category, and price range.
 
-![Inventory Page Screenshot — Desktop](screenshots/inventory-full.png)
+![Inventory Page Screenshot — Desktop](car_dealer_website/screenshots/inventory-full.png)
 
-![Inventory Page Screenshot — Phone](screenshots/inventory-full-phone.png)
+![Inventory Page Screenshot — Phone](car_dealer_website/screenshots/inventory-full-phone.png)
 
-![Inventory Page Screenshot — Tablet](screenshots/inventory-full-tablet.png)
+![Inventory Page Screenshot — Tablet](car_dealer_website/screenshots/inventory-full-tablet.png)
 
 ---
 
@@ -463,11 +463,11 @@ The inventory page displays the complete vehicle list and includes filtering by 
 
 The car details page presents an individual vehicle with a large image gallery, detailed specifications, modifications, damage report, and overview.
 
-![Car Details Page Screenshot — Desktop](screenshots/car-details-full.png)
+![Car Details Page Screenshot — Desktop](car_dealer_website/screenshots/car-details-full.png)
 
-![Car Details Page Screenshot — Phone](screenshots/car-details-full-phone.png)
+![Car Details Page Screenshot — Phone](car_dealer_website/screenshots/car-details-full-phone.png)
 
-![Car Details Page Screenshot — Tablet](screenshots/car-details-full-tablet.png)
+![Car Details Page Screenshot — Tablet](car_dealer_website/screenshots/car-details-full-tablet.png)
 
 ---
 
@@ -475,11 +475,11 @@ The car details page presents an individual vehicle with a large image gallery, 
 
 The financing page includes a financing application form with validation and styled input sections.
 
-![Financing Page Screenshot — Desktop](screenshots/financing-full.png)
+![Financing Page Screenshot — Desktop](car_dealer_website/screenshots/financing-full.png)
 
-![Financing Page Screenshot — Phone](screenshots/financing-full-phone.png)
+![Financing Page Screenshot — Phone](car_dealer_website/screenshots/financing-full-phone.png)
 
-![Financing Page Screenshot — Tablet](screenshots/financing-full-tablet.png)
+![Financing Page Screenshot — Tablet](car_dealer_website/screenshots/financing-full-tablet.png)
 
 ---
 
@@ -487,11 +487,11 @@ The financing page includes a financing application form with validation and sty
 
 The test drive page allows users to book a test drive by selecting their preferred vehicle, date, time, and contact information.
 
-![Test Drive Page Screenshot — Desktop](screenshots/test-drive-full.png)
+![Test Drive Page Screenshot — Desktop](car_dealer_website/screenshots/test-drive-full.png)
 
-![Test Drive Page Screenshot — Phone](screenshots/test-drive-full-phone.png)
+![Test Drive Page Screenshot — Phone](car_dealer_website/screenshots/test-drive-full-phone.png)
 
-![Test Drive Page Screenshot — Tablet](screenshots/test-drive-full-tablet.png)
+![Test Drive Page Screenshot — Tablet](car_dealer_website/screenshots/test-drive-full-tablet.png)
 
 ---
 
@@ -499,13 +499,13 @@ The test drive page allows users to book a test drive by selecting their preferr
 
 The API Specs page allows users to search for real vehicle specifications using the API Ninjas Cars API.
 
-![API Specs Page Screenshot — Desktop](screenshots/car-specs-full.png)
+![API Specs Page Screenshot — Desktop](car_dealer_website/screenshots/car-specs-full.png)
 
-![API Specs Page Screenshot — Phone](screenshots/car-specs-full-phone.png)
+![API Specs Page Screenshot — Phone](car_dealer_website/screenshots/car-specs-full-phone.png)
 
-![API Specs Page Screenshot — Tablet](screenshots/car-specs-full-tablet.png)
+![API Specs Page Screenshot — Tablet](car_dealer_website/screenshots/car-specs-full-tablet.png)
 
-![API Specs Page Screenshot — Search Result](screenshots/car-specs2.png)
+![API Specs Page Screenshot — Search Result](car_dealer_website/screenshots/car-specs2.png)
 
 ---
 
@@ -513,11 +513,11 @@ The API Specs page allows users to search for real vehicle specifications using 
 
 The About page presents the dealership story, values, showroom sections, and visual brand identity.
 
-![About Page Screenshot — Desktop](screenshots/about-full.png)
+![About Page Screenshot — Desktop](car_dealer_website/screenshots/about-full.png)
 
-![About Page Screenshot — Phone](screenshots/about-full-phone.png)
+![About Page Screenshot — Phone](car_dealer_website/screenshots/about-full-phone.png)
 
-![About Page Screenshot — Tablet](screenshots/about-full-tablet.png)
+![About Page Screenshot — Tablet](car_dealer_website/screenshots/about-full-tablet.png)
 
 ---
 
@@ -525,11 +525,11 @@ The About page presents the dealership story, values, showroom sections, and vis
 
 The Contact page includes contact information, a contact form, showroom details, and location section.
 
-![Contact Page Screenshot — Desktop](screenshots/contact-full.png)
+![Contact Page Screenshot — Desktop](car_dealer_website/screenshots/contact-full.png)
 
-![Contact Page Screenshot — Phone](screenshots/contact-full-phone.png)
+![Contact Page Screenshot — Phone](car_dealer_website/screenshots/contact-full-phone.png)
 
-![Contact Page Screenshot — Tablet](screenshots/contact-full-tablet.png)
+![Contact Page Screenshot — Tablet](car_dealer_website/screenshots/contact-full-tablet.png)
 
 ---
 
