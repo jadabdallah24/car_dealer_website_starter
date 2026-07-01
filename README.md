@@ -298,13 +298,13 @@ Running `node server.js` twice without stopping the first instance caused a port
 
 The `car-details.html` page was completely blank because `script.js` was missing the `CarDetails` class entirely. The HTML placeholders existed but nothing was reading the `?car=` URL parameter or populating the page. The `CarDetails` class was written and added to `script.js`, and the script load order was corrected so `car-data.js` loads before `script.js`.
 
-### 7. API Ninjas "Invalid API Key" Error
+### 7. API Keys Exposed on GitHub — Auto-Revoked by OpenAI
 
-The Cars API search returned `"Invalid API Key"` even after confirming the key matched what was stored in `.env`. The first fix was discovering that `api-cars.js` had an old hardcoded key baked directly into the frontend JavaScript and was calling API Ninjas directly from the browser instead of going through the Express backend. This was corrected so the frontend calls `/api/cars` on the local server, which proxies the request using `API_NINJAS_KEY` from `.env`. The original key itself also turned out to be invalid at the source (confirmed with a direct `curl` test against the API Ninjas endpoint), so the key was regenerated from the API Ninjas dashboard and the `.env` file was updated with the new value.
+The `.env` file was accidentally committed and pushed to the public GitHub repository, exposing both the OpenAI API key and the API Ninjas key. OpenAI detected the exposure automatically and sent an email notification confirming the key had been revoked for security reasons — this was the real cause of the "Invalid API Key" errors seen in both the AI assistant and the Cars API search. Both keys were immediately regenerated from their respective dashboards (OpenAI and API Ninjas) and updated in the local `.env` file. The `.env` file was added to `.gitignore` to ensure it could never be committed again.
 
-### 8. GitHub Push Protection Blocked a Commit Containing an API Key
+### 8. GitHub Push Protection Blocked Subsequent Push
 
-A push was rejected by GitHub's secret scanning push protection because an earlier commit included the OpenAI API key inside `car_dealer_website/.env`. Since the key had already been rotated, the secret was marked as resolved directly through GitHub's "I've already rotated/revoked this secret" option on the blocked-secret URL provided in the error message, which allowed the push to go through without rewriting git history. `.env` was confirmed to be listed in `.gitignore` going forward to prevent any future commits from including it.
+After the `.env` exposure, a subsequent push was rejected by GitHub's secret scanning push protection because the revoked OpenAI key was still present in the commit history. Since the key had already been rotated and was no longer active, the secret was marked as resolved through GitHub's "I've already rotated/revoked this secret" option on the blocked-secret page linked in the push error message, which allowed the push to go through without requiring a full history rewrite.
 
 ---
 
@@ -386,17 +386,13 @@ All screenshots are stored inside the `car_dealer_website/screenshots/` folder.
 
 The homepage includes the hero section, navbar, vehicle categories, featured inventory, services, and call-to-action content.
 
-![Home Page Screenshot 1](car_dealer_website/screenshots/home1.png)
+![Home Page Screenshot — Desktop](car_dealer_website/screenshots/home-full.png)
 
-![Home Page Screenshot 2](car_dealer_website/screenshots/home2.png)
+![Home Page Screenshot — Phone](car_dealer_website/screenshots/home-full-phone.png)
 
-![Home Page Screenshot 3](car_dealer_website/screenshots/home3.png)
+![Home Page Screenshot — Tablet](car_dealer_website/screenshots/home-full-tablet.png)
 
-![Home Page Screenshot 4](car_dealer_website/screenshots/home4.png)
-
-![Home Page Screenshot 5](car_dealer_website/screenshots/home5.png)
-
-![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/homeAI.png)
+![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/home%20AI.png)
 
 ---
 
@@ -404,9 +400,11 @@ The homepage includes the hero section, navbar, vehicle categories, featured inv
 
 The inventory page displays the complete vehicle list and includes filtering by vehicle name, category, and price range.
 
-![Inventory Page Screenshot 1](car_dealer_website/screenshots/inventory1.png)
+![Inventory Page Screenshot — Desktop](car_dealer_website/screenshots/inventory-full.png)
 
-![Inventory Page Screenshot 2](car_dealer_website/screenshots/inventory2.png)
+![Inventory Page Screenshot — Phone](car_dealer_website/screenshots/inventory-full-phone.png)
+
+![Inventory Page Screenshot — Tablet](car_dealer_website/screenshots/inventory-full-tablet.png)
 
 ---
 
@@ -414,9 +412,11 @@ The inventory page displays the complete vehicle list and includes filtering by 
 
 The car details page presents an individual vehicle with a large image gallery, detailed specifications, modifications, damage report, and overview.
 
-![Car Details Page Screenshot 1](car_dealer_website/screenshots/car-details1.png)
+![Car Details Page Screenshot — Desktop](car_dealer_website/screenshots/car-details-full.png)
 
-![Car Details Page Screenshot 2](car_dealer_website/screenshots/car-detail2.png)
+![Car Details Page Screenshot — Phone](car_dealer_website/screenshots/car-details-full-phone.png)
+
+![Car Details Page Screenshot — Tablet](car_dealer_website/screenshots/car-details-full-tablet.png)
 
 ---
 
@@ -424,9 +424,11 @@ The car details page presents an individual vehicle with a large image gallery, 
 
 The financing page includes a financing application form with validation and styled input sections.
 
-![Financing Page Screenshot 1](car_dealer_website/screenshots/financing1.png)
+![Financing Page Screenshot — Desktop](car_dealer_website/screenshots/financing-full.png)
 
-![Financing Page Screenshot 2](car_dealer_website/screenshots/financing2.png)
+![Financing Page Screenshot — Phone](car_dealer_website/screenshots/financing-full-phone.png)
+
+![Financing Page Screenshot — Tablet](car_dealer_website/screenshots/financing-full-tablet.png)
 
 ---
 
@@ -434,9 +436,11 @@ The financing page includes a financing application form with validation and sty
 
 The test drive page allows users to book a test drive by selecting their preferred vehicle, date, time, and contact information.
 
-![Test Drive Page Screenshot 1](car_dealer_website/screenshots/test-drive1.png)
+![Test Drive Page Screenshot — Desktop](car_dealer_website/screenshots/test-drive-full.png)
 
-![Test Drive Page Screenshot 2](car_dealer_website/screenshots/test-drive2.png)
+![Test Drive Page Screenshot — Phone](car_dealer_website/screenshots/test-drive-full-phone.png)
+
+![Test Drive Page Screenshot — Tablet](car_dealer_website/screenshots/test-drive-full-tablet.png)
 
 ---
 
@@ -444,9 +448,13 @@ The test drive page allows users to book a test drive by selecting their preferr
 
 The API Specs page allows users to search for real vehicle specifications using the API Ninjas Cars API.
 
-![API Specs Page Screenshot](car_dealer_website/screenshots/car-specs.png)
+![API Specs Page Screenshot — Desktop](car_dealer_website/screenshots/car-specs-full.png)
 
-![API Specs Page Screenshot 2](car_dealer_website/screenshots/car-specs2.png)
+![API Specs Page Screenshot — Phone](car_dealer_website/screenshots/car-specs-full-phone.png)
+
+![API Specs Page Screenshot — Tablet](car_dealer_website/screenshots/car-specs-full-tablet.png)
+
+![API Specs Page Screenshot — Search Result](car_dealer_website/screenshots/car-specs2.png)
 
 ---
 
@@ -454,13 +462,11 @@ The API Specs page allows users to search for real vehicle specifications using 
 
 The About page presents the dealership story, values, showroom sections, and visual brand identity.
 
-![About Page Screenshot 1](car_dealer_website/screenshots/about1.png)
+![About Page Screenshot — Desktop](car_dealer_website/screenshots/about-full.png)
 
-![About Page Screenshot 2](car_dealer_website/screenshots/about2.png)
+![About Page Screenshot — Phone](car_dealer_website/screenshots/about-full-phone.png)
 
-![About Page Screenshot 3](car_dealer_website/screenshots/about3.png)
-
-![About Page Screenshot 4](car_dealer_website/screenshots/about4.png)
+![About Page Screenshot — Tablet](car_dealer_website/screenshots/about-full-tablet.png)
 
 ---
 
@@ -468,9 +474,11 @@ The About page presents the dealership story, values, showroom sections, and vis
 
 The Contact page includes contact information, a contact form, showroom details, and location section.
 
-![Contact Page Screenshot 1](car_dealer_website/screenshots/contact1.png)
+![Contact Page Screenshot — Desktop](car_dealer_website/screenshots/contact-full.png)
 
-![Contact Page Screenshot 2](car_dealer_website/screenshots/contact2.png)
+![Contact Page Screenshot — Phone](car_dealer_website/screenshots/contact-full-phone.png)
+
+![Contact Page Screenshot — Tablet](car_dealer_website/screenshots/contact-full-tablet.png)
 
 ---
 
