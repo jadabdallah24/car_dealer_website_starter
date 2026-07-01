@@ -218,13 +218,13 @@ Implementation: the `ScrollToTop` ES6 class in `script.js` listens for the `scro
 
 18 vehicles across 5 categories. Each vehicle includes a name, badge, price, mileage, transmission, drivetrain, engine, power output, colour, full description, modifications list, damage report status, and 5 gallery photos.
 
-| Category  | Vehicles                                                                                                                         |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Coupe     | BMW M4 Competition, BMW M4 Silver Surfer Spec, Chevrolet Corvette Stingray, Toyota GT86 TRD                                       |
-| Supercar  | Porsche 911 Turbo S, Corvette ZR1, McLaren 765LT Batman Spec, Ferrari 488 Pista, Ferrari 812 Competizione, Lamborghini Revuelto    |
-| SUV       | Mercedes-Benz GLE 450, Mercedes-Maybach GLS 600, Range Rover Sport SVR                                                            |
-| Sedan     | Audi S4 Premium, Audi RS7 ABT Legacy                                                                                              |
-| Hatchback | Volkswagen Golf R, GR Yaris Rally Spec, Honda Civic Type R                                                                        |
+| Category  | Vehicles                                                                                                                        |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Coupe     | BMW M4 Competition, BMW M4 Silver Surfer Spec, Chevrolet Corvette Stingray, Toyota GT86 TRD                                     |
+| Supercar  | Porsche 911 Turbo S, Corvette ZR1, McLaren 765LT Batman Spec, Ferrari 488 Pista, Ferrari 812 Competizione, Lamborghini Revuelto |
+| SUV       | Mercedes-Benz GLE 450, Mercedes-Maybach GLS 600, Range Rover Sport SVR                                                          |
+| Sedan     | Audi S4 Premium, Audi RS7 ABT Legacy                                                                                            |
+| Hatchback | Volkswagen Golf R, GR Yaris Rally Spec, Honda Civic Type R                                                                      |
 
 ---
 
@@ -261,12 +261,22 @@ Deployment steps used:
 
 ## Security
 
-Files excluded from GitHub via `.gitignore`:
+⚠️ **Current state:** this version of the project does **not** include a `.gitignore` or a `.env.example` file, and `.env` (with the real `API_NINJAS_KEY` and `OPENAI_API_KEY` values) sits directly inside `car_dealer_website/`. This is not safe to push to GitHub as-is.
 
-```text
-.env
-node_modules/
-```
+Before committing or pushing this version, the following must be done:
+
+1. Recreate a `.gitignore` in `car_dealer_website/` containing at minimum:
+   ```text
+   .env
+   node_modules/
+   ```
+2. Run `git rm --cached .env` if `.env` was ever tracked before, so it stops being versioned going forward.
+3. Regenerate both the API Ninjas and OpenAI keys from their dashboards, since the keys currently stored in `.env` should be treated as compromised (see Issue 9 below) and replaced before deployment.
+4. Optionally recreate a `.env.example` with placeholder values only, so the required variable names are documented without exposing real keys:
+   ```env
+   API_NINJAS_KEY=your_api_ninjas_key_here
+   OPENAI_API_KEY=your_openai_key_here
+   ```
 
 The `.env` file contains private API keys and must never be committed to a public repository. Environment variables are configured directly in the Render dashboard for production deployment.
 
@@ -300,11 +310,20 @@ The `car-details.html` page was completely blank because `script.js` was missing
 
 ### 7. API Ninjas "Invalid API Key" Error
 
-The Cars API search returned `"Invalid API Key"` even after confirming the key matched what was stored in `.env`. The first fix was discovering that `api-cars.js` had an old hardcoded key baked directly into the frontend JavaScript and was calling API Ninjas directly from the browser instead of going through the Express backend. This was corrected so the frontend calls `/api/cars` on the local server, which proxies the request using `API_NINJAS_KEY` from `.env`. The original key itself also turned out to be invalid at the source (confirmed with a direct `curl` test against the API Ninjas endpoint), so the key was regenerated from the API Ninjas dashboard and the `.env` file was updated with the new value.
+The Cars API search returned `"Invalid API Key"` even after confirming the key matched what was stored in `.env`. The first fix was discovering that `api-cars.js` had an old hardcoded key baked directly into the frontend JavaScript and was calling API Ninjas directly from the browser instead of going through the Express backend. This was corrected so the frontend calls `/api/cars` on the local server, which proxies the request using `API_NINJAS_KEY` from `.env`.
 
 ### 8. GitHub Push Protection Blocked a Commit Containing an API Key
 
-A push was rejected by GitHub's secret scanning push protection because an earlier commit included the OpenAI API key inside `car_dealer_website/.env`. Since the key had already been rotated, the secret was marked as resolved directly through GitHub's "I've already rotated/revoked this secret" option on the blocked-secret URL provided in the error message, which allowed the push to go through without rewriting git history. `.env` was confirmed to be listed in `.gitignore` going forward to prevent any future commits from including it.
+A push was rejected by GitHub's secret scanning push protection because an earlier commit included an OpenAI API key inside `car_dealer_website/.env`. The secret was marked as resolved through GitHub's "I've already rotated/revoked this secret" option on the blocked-secret URL provided in the error message, which allowed the push to go through without rewriting git history.
+
+### 9. Both OpenAI and API Ninjas Auto-Revoked Keys After GitHub Exposure — AI Assistant and Car Specs Search Stopped Working
+
+Even after the key was believed to be safely rotated, `.env` was exposed again in a later push (the `.gitignore` and `.env.example` files that had previously kept it out of version control were removed at some point during cleanup, so `.env` went back to being tracked). Both API providers scan public GitHub repositories for leaked credentials as a security measure:
+
+- **OpenAI** detected the exposed key and sent an email confirming it had been automatically revoked, which is why the Prime AI Assistant started returning "invalid API key" errors even though the key in `.env` looked correct locally.
+- **API Ninjas** did the same for its key shortly after, which is why the live car specification search on `api-specs.html` also stopped returning results.
+
+Neither provider will let a key that has appeared in a public commit keep working, even after the offending commit is removed or the repository is made private, because the key itself — not just the commit — is flagged. The only real fix is to generate brand-new keys from each dashboard, never commit `.env` again, and rely on Render's Environment tab (not the repo) to hold the production keys. This is why a working `.gitignore` and keeping `.env` untracked from the very first commit matters more than removing a key after the fact.
 
 ---
 
@@ -324,7 +343,7 @@ A push was rejected by GitHub's secret scanning push protection because an earli
 ## Technologies Used
 
 | Technology            | Purpose                                               |
-| ---------------------- | ----------------------------------------------------- |
+| --------------------- | ----------------------------------------------------- |
 | HTML5                 | Page structure and semantic markup                    |
 | CSS3                  | Styling, glassmorphism, animations, responsive layout |
 | Bootstrap 5.3.3       | Navbar, grid system, utility classes                  |
@@ -332,7 +351,7 @@ A push was rejected by GitHub's secret scanning push protection because an earli
 | Node.js               | Backend runtime                                       |
 | Express.js            | API proxy routes and static file serving              |
 | dotenv                | Secure environment variable loading                   |
-| OpenAI Node.js SDK v4  | OpenAI API integration                                |
+| OpenAI Node.js SDK v4 | OpenAI API integration                                |
 | API Ninjas Cars API   | Live vehicle specification data                       |
 | Font Awesome 6.5      | Icons throughout the site                             |
 | Google Fonts          | Cormorant Garamond + Inter typography                 |
@@ -346,7 +365,7 @@ A push was rejected by GitHub's secret scanning push protection because an earli
 ### Tools Used
 
 | Tool               | Purpose                                                                                                                         |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | Claude (Anthropic) | Code review, Bootstrap migration, ES6 class architecture, form validation, AI chat integration, UI/UX design, debugging, README |
 
 ### Sample Prompts Used
@@ -363,6 +382,40 @@ A push was rejected by GitHub's secret scanning push protection because an earli
 
 6. *"Help me deploy my Node.js project on Render and fix the deployment errors."*
 
+7. *"hello gpt how can you take a screenshot of the whole website page on chrome?"*
+
+8. *"ctrl shift p isnt working"*
+
+9. *"now i need to do the same but for a tablet view and mobile view"*
+
+10. *"hello gpt i would like from you to create more angles of each car you already created before same colours and spec even the interior and send them to me please so i can finish my work on the website thank you"* — followed by a list of specific vehicles: Ferrari 488 Pista (grey, red interior), Ferrari 812 Competizione, Lamborghini Revuelto (matte purple), BMW M4 Silver Surfer Spec, Audi RS7 ABT Legacy, Range Rover SVR (blue, carbon hood), GR Yaris Rally Spec, Toyota GT86 (light grey, TRD lip spoiler), Civic Type R (white, 2017 hatchback), McLaren 765LT Batman Spec
+
+11. *"write me a prompt for another ai to work on the ai feature that i added with you and make it function properly and in addition to improve the styling of all the pages in the website and give it a bit of life"*
+
+12. *"i want a prompt to send to an ai to correct my website i want it to include that whenever the screen gets smaller it should automatically adapt and change the nav bar into a hidden one next i want it to fix the inventory layout and the car details page as well in the car details i want it to put the well structured details and correct them to the right the picture to the left and the gallery thumbnail under the photo itself and be able to change photos (add a small overview of the car explaining all modifications if available and damage if present)"*
+
+13. *"if i want my website to outshine every other project what is your go to recommendation?"*
+
+14. *"is it possible to link ai to my project?"*
+
+15. *"is it possible that you help me implement it in my website?"*
+
+16. *"where do i get my open ai key?"*
+
+17. *"now that i have added scriptsrc and .env text and created the ai html what shoul i do"*
+
+18. *"shouldnt there be a certain html file that display the chat and add a css style etc.."*
+
+19. *"it is sending me make sure node.js is running even when i ran it"*
+
+20. *"one quick question how can i get a free domain from github?"*
+
+21. *"hello just a quick question is it possible for me to add an already made dancing penguin to my work as an easter egg?"*
+
+22. *"now can you do it but without the black background square and be movable on the screen?"*
+
+23. *"thank you gpt it works now i need to make it functional on render"*
+
 ### What the AI Got Wrong
 
 **1. Bootstrap navbar background override**
@@ -378,25 +431,19 @@ The initial `server.js` used `openai.responses.create` with a non-existent model
 
 ## Screenshots
 
-All screenshots are stored inside the `car_dealer_website/screenshots/` folder.
-
----
+All screenshots are stored in the `screenshots/` folder.
 
 ### Home Page
 
 The homepage includes the hero section, navbar, vehicle categories, featured inventory, services, and call-to-action content.
 
-![Home Page Screenshot 1](car_dealer_website/screenshots/home1.png)
+![Home Page Screenshot — Desktop](car_dealer_website/screenshots/home-full.png)
 
-![Home Page Screenshot 2](car_dealer_website/screenshots/home2.png)
+![Home Page Screenshot — Phone](car_dealer_website/screenshots/home-full-phone.png)
 
-![Home Page Screenshot 3](car_dealer_website/screenshots/home3.png)
+![Home Page Screenshot — Tablet](car_dealer_website/screenshots/home-full-tablet.png)
 
-![Home Page Screenshot 4](car_dealer_website/screenshots/home4.png)
-
-![Home Page Screenshot 5](car_dealer_website/screenshots/home5.png)
-
-![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/homeAI.png)
+![Home Page Screenshot — Prime AI Assistant](car_dealer_website/screenshots/homeAI%20.png)
 
 ---
 
@@ -404,9 +451,11 @@ The homepage includes the hero section, navbar, vehicle categories, featured inv
 
 The inventory page displays the complete vehicle list and includes filtering by vehicle name, category, and price range.
 
-![Inventory Page Screenshot 1](car_dealer_website/screenshots/inventory1.png)
+![Inventory Page Screenshot — Desktop](car_dealer_website/screenshots/inventory-full.png)
 
-![Inventory Page Screenshot 2](car_dealer_website/screenshots/inventory2.png)
+![Inventory Page Screenshot — Phone](car_dealer_website/screenshots/inventory-full-phone.png)
+
+![Inventory Page Screenshot — Tablet](car_dealer_website/screenshots/inventory-full-tablet.png)
 
 ---
 
@@ -414,9 +463,11 @@ The inventory page displays the complete vehicle list and includes filtering by 
 
 The car details page presents an individual vehicle with a large image gallery, detailed specifications, modifications, damage report, and overview.
 
-![Car Details Page Screenshot 1](car_dealer_website/screenshots/car-details1.png)
+![Car Details Page Screenshot — Desktop](car_dealer_website/screenshots/car-details-full.png)
 
-![Car Details Page Screenshot 2](car_dealer_website/screenshots/car-detail2.png)
+![Car Details Page Screenshot — Phone](car_dealer_website/screenshots/car-details-full-phone.png)
+
+![Car Details Page Screenshot — Tablet](car_dealer_website/screenshots/car-details-full-tablet.png)
 
 ---
 
@@ -424,9 +475,11 @@ The car details page presents an individual vehicle with a large image gallery, 
 
 The financing page includes a financing application form with validation and styled input sections.
 
-![Financing Page Screenshot 1](car_dealer_website/screenshots/financing1.png)
+![Financing Page Screenshot — Desktop](car_dealer_website/screenshots/financing-full.png)
 
-![Financing Page Screenshot 2](car_dealer_website/screenshots/financing2.png)
+![Financing Page Screenshot — Phone](car_dealer_website/screenshots/financing-full-phone.png)
+
+![Financing Page Screenshot — Tablet](car_dealer_website/screenshots/financing-full-tablet.png)
 
 ---
 
@@ -434,9 +487,11 @@ The financing page includes a financing application form with validation and sty
 
 The test drive page allows users to book a test drive by selecting their preferred vehicle, date, time, and contact information.
 
-![Test Drive Page Screenshot 1](car_dealer_website/screenshots/test-drive1.png)
+![Test Drive Page Screenshot — Desktop](car_dealer_website/screenshots/test-drive-full.png)
 
-![Test Drive Page Screenshot 2](car_dealer_website/screenshots/test-drive2.png)
+![Test Drive Page Screenshot — Phone](car_dealer_website/screenshots/test-drive-full-phone.png)
+
+![Test Drive Page Screenshot — Tablet](car_dealer_website/screenshots/test-drive-full-tablet.png)
 
 ---
 
@@ -444,9 +499,13 @@ The test drive page allows users to book a test drive by selecting their preferr
 
 The API Specs page allows users to search for real vehicle specifications using the API Ninjas Cars API.
 
-![API Specs Page Screenshot](car_dealer_website/screenshots/car-specs.png)
+![API Specs Page Screenshot — Desktop](car_dealer_website/screenshots/car-specs-full.png)
 
-![API Specs Page Screenshot 2](car_dealer_website/screenshots/car-specs2.png)
+![API Specs Page Screenshot — Phone](car_dealer_website/screenshots/car-specs-full-phone.png)
+
+![API Specs Page Screenshot — Tablet](car_dealer_website/screenshots/car-specs-full-tablet.png)
+
+![API Specs Page Screenshot — Search Result](car_dealer_website/screenshots/car-specs2.png)
 
 ---
 
@@ -454,13 +513,11 @@ The API Specs page allows users to search for real vehicle specifications using 
 
 The About page presents the dealership story, values, showroom sections, and visual brand identity.
 
-![About Page Screenshot 1](car_dealer_website/screenshots/about1.png)
+![About Page Screenshot — Desktop](car_dealer_website/screenshots/about-full.png)
 
-![About Page Screenshot 2](car_dealer_website/screenshots/about2.png)
+![About Page Screenshot — Phone](car_dealer_website/screenshots/about-full-phone.png)
 
-![About Page Screenshot 3](car_dealer_website/screenshots/about3.png)
-
-![About Page Screenshot 4](car_dealer_website/screenshots/about4.png)
+![About Page Screenshot — Tablet](car_dealer_website/screenshots/about-full-tablet.png)
 
 ---
 
@@ -468,9 +525,11 @@ The About page presents the dealership story, values, showroom sections, and vis
 
 The Contact page includes contact information, a contact form, showroom details, and location section.
 
-![Contact Page Screenshot 1](car_dealer_website/screenshots/contact1.png)
+![Contact Page Screenshot — Desktop](car_dealer_website/screenshots/contact-full.png)
 
-![Contact Page Screenshot 2](car_dealer_website/screenshots/contact2.png)
+![Contact Page Screenshot — Phone](car_dealer_website/screenshots/contact-full-phone.png)
+
+![Contact Page Screenshot — Tablet](car_dealer_website/screenshots/contact-full-tablet.png)
 
 ---
 
