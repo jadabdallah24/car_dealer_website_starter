@@ -196,6 +196,22 @@ Behaviour:
 * Fades back out when the user returns to the top
 
 Implementation: the `ScrollToTop` ES6 class in `script.js` listens for the `scroll` event and toggles a `.show` CSS class that triggers the fade/slide transition defined in `styles.css`.
+<!-- Footer social icons — intentionally not linked to real accounts.
+     Each one triggers the same smooth scroll-to-top behavior as #scrollTopBtn. -->
+<div class="social-icons">
+  <a href="#" aria-label="Facebook" onclick="document.getElementById('scrollTopBtn').click(); return false;">
+    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+  </a>
+  <a href="#" aria-label="Instagram" onclick="document.getElementById('scrollTopBtn').click(); return false;">
+    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+  </a>
+  <a href="#" aria-label="LinkedIn" onclick="document.getElementById('scrollTopBtn').click(); return false;">
+    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+  </a>
+  <a href="#" aria-label="WhatsApp" onclick="document.getElementById('scrollTopBtn').click(); return false;">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+</div>
 
 ---
 
